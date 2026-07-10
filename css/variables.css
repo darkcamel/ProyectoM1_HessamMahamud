@@ -24,8 +24,8 @@ VARIABLES
     /*--> espaciado <--*/
     --espacio-base: 0.5rem;
     --espacio-xs: var(--espacio-base);
-    --espacio-sm: calc(var(var(--espacio-base)) * 2);
-    --espacio-md: calc(var(var(--espacio-base)) * 3);
-    --espacio-lg: calc(var(var(--espacio-base)) * 4);
-    --espacio-xl: calc(var(var(--espacio-base)) * 8);
+    --espacio-sm: calc(var(--espacio-base) * 2);
+    --espacio-md: calc(var(--espacio-base) * 3);
+    --espacio-lg: calc(var(--espacio-base) * 4);
+    --espacio-xl: calc(var(--espacio-base) * 8);
 }
