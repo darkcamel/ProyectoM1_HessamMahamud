@@ -1,5 +1,6 @@
 /*--> HEADER <--*/
 .header {
+    width: 0 auto;
     text-align: center;
     background-color: var(--color-fondo-secundario);
 }
