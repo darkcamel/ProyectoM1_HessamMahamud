@@ -1,17 +1,28 @@
-/*---
-BASE
----*/
+/*==<base>==*/
 
-/* ROOT */
+/*==> root */
 html {
     font-size: 100%;
 }
 
-/* BODY */
+/*==> body */
 body {
     font-family: 'Fira Sans', 'Fira Code', Arial, Helvetica, sans-serif;
     font-size: 1rem;
+    font-weight: 400;
     line-height: 1.8;
     background-color: var(--color-fondo);
     color: var(--color-texto);
+}
+
+/*==> títulos y párrafos */
+h1,
+h2,
+h3 {
+    color: var(--color-titulo);
+    line-height: 1.2;
+}
+
+p {
+    color: var(--color-texto-secundario);
 }
