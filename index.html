@@ -10,30 +10,40 @@
 </head>
 
 <body>
-    <!--título principal-->
+    
+    <!-- ==<título principal>== -->
     <header class="header">
         <h1>Paleta de Colores</h1>
         <p>Galería de colores listos para copiar y pegar</p>
     </header>
 
-    <!--contenedor principal-->
+    <!-- ==<contenedor principal>== -->
     <main class="contenedor">
-        <!--panel de control izquierda-->
+        
+        <!-- ==<panel de control izquierda>== -->
         <section class="control-panel">
             <h2>Controles</h2>
-            <!--selector numero de colores paleta-->
-            <div class="control-selector-tamaño">
-                <label for="palette-size">Tamaño de la paleta</label>
-                <select id="palette-size" name="palette-size">
-                    <option value="6">6 colores</option>
-                    <option value="8">8 colores</option>
-                    <option value="9">9 colores</option>
-                </select>
+            
+            <!-- ==<selector numero de colores paleta>== -->
+            <div class="control-selector-tamano">
+                <div class="selector-tamano">
+                    <label for="palette-size">Tamaño de la paleta</label>
+                    <select id="palette-size" name="palette-size">
+                        <option value="6">6 colores</option>
+                        <option value="8">8 colores</option>
+                        <option value="9">9 colores</option>
+                    </select>
+                </div>
             </div>
 
             <button id="generate-pallete">Genera paleta de colores</button>
+            <!-- más adelante acá va microfeedback, etc. -->
         </section>
+        
         <!--paleta de colores-->
+        <section>
+            
+        </section>
     </main>
 
     <!-------------------->
