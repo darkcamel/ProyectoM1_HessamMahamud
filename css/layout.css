@@ -1,113 +1,64 @@
-/*--> HEADER <--*/
+/*==<layout>==*/
+
+/*==> header <== */
 .header {
-    width: 100%;
     text-align: center;
     background-color: var(--color-fondo-secundario);
+    padding: var(--espacio-lg) var(--espacio-md);
 }
 
+/*--> título principal */
 .header h1 {
     font-size: 2.5rem;
     color: var(--color-titulo);
+    margin-bottom: var(--espacio-xs);
 }
 
+/*--> subtítulo */
 .header p {
     font-size: 1.25rem;
     color: var(--color-subtitulo);
 }
 
-/*--> MAIN <--*/
-.contenedor {
-    width: 100%;
+/*==> main layout <== */
+.app-layout {
     display: grid;
-    margin-top: 30px;
-    grid-template-columns: repeat(3, 1fr);
-    justify-items: center;
-    gap: 50px;
-
+    grid-template-columns: 1fr 2fr;
+    /* izquierda más pequeña */
+    gap: var(--espacio-lg) var(--espacio-md);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--espacio-lg) var(--espacio-md);
 }
 
-.galeria-color {
+/*--> panel de controles (izquierdo) */
+.controls-panel {
     display: flex;
+    flex-direction: column;
+    gap: var(--espacio-md);
 }
 
-.color1 {
-    width: 100px;
-    height: 100px;
-    display: grid;
-    margin: var(--espacio-md);
+/*--> panel de paleta (derecha) */
+.palette-panel {
     padding: var(--espacio-md);
-    background-color: aqua;
 }
 
-
-.color2 {
-    width: 100px;
-    height: 100px;
+/*--> grid de paleta */
+.palette-grid {
     display: grid;
-    margin: var(--espacio-md);
-    padding: var(--espacio-md);
-    background-color: rgb(38, 136, 136);
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 columnas */
+    gap: var(--espacio-md);
+    justify-items: center;
 }
 
-.color3 {
-    width: 100px;
-    height: 100px;
-    display: grid;
-    margin: var(--espacio-md);
+/*--> color individual (la que crea JS) */
+.palette-color {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: var(--espacio-md);
-    background-color: rgb(5, 84, 84);
-}
-
-.color4 {
-    width: 100px;
-    height: 100px;
-    display: grid;
-    margin: var(--espacio-md);
-    padding: var(--espacio-md);
-    background-color: rgb(61, 188, 188);
-}
-
-.color5 {
-    width: 100px;
-    height: 100px;
-    display: grid;
-    margin: var(--espacio-md);
-    padding: var(--espacio-md);
-    background-color: rgb(1, 120, 120);
-}
-
-.color6 {
-    width: 100px;
-    height: 100px;
-    display: grid;
-    margin: var(--espacio-md);
-    padding: var(--espacio-md);
-    background-color: rgb(33, 87, 163);
-}
-
-.color7 {
-    width: 100px;
-    height: 100px;
-    display: grid;
-    margin: var(--espacio-md);
-    padding: var(--espacio-md);
-    background-color: rgb(75, 103, 205);
-}
-
-.color8 {
-    width: 100px;
-    height: 100px;
-    display: grid;
-    margin: var(--espacio-md);
-    padding: var(--espacio-md);
-    background-color: rgb(129, 169, 224);
-}
-
-.color9 {
-    width: 100px;
-    height: 100px;
-    display: grid;
-    margin: var(--espacio-md);
-    padding: var(--espacio-md);
-    background-color: rgb(104, 66, 160);
+    border-radius: var(--borde-radio-md);
+    box-shadow: var(--sombra-suave);
+    background-color: var(--color-fondo-secundario);
 }

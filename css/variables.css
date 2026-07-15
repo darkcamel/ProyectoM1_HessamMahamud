@@ -1,14 +1,11 @@
-/*-------
-VARIABLES
--------*/
-
+/*==<variables>==*/
 :root {
-    /*--> colores primarios <--*/
+    /*==> colores primarios */
     --color-primario: hsl(15, 70%, 50%);
     --color-primario-claro: hsl(15, 70%, 80%);
     --color-primario-oscuro: hsl(15, 70%, 20%);
 
-    /*--> colores de texto <--*/
+    /*-==> colores de texto */
     --color-texto: hsl(15, 15%, 25%);
     --color-titulo: hsl(15, 60%, 15%);
     --color-subtitulo: hsl(15, 35%, 35%);
@@ -16,16 +13,24 @@ VARIABLES
     --color-texto-claro: hsl(15, 10%, 95%);
     --color-texto-ayuda: hsl(15, 15%, 60%);
 
-    /*--> colores de fondo <--*/
+    /*==> colores de fondo */
     --color-fondo: hsl(15,20%,98%);
     --color-fondo-secundario: hsl(15, 40%, 93%);
     --color-fondo-oscuro: hsl(15, 25%, 10%);
 
-    /*--> espaciado <--*/
+    /*==> espaciado */
     --espacio-base: 0.5rem;
     --espacio-xs: var(--espacio-base);
     --espacio-sm: calc(var(--espacio-base) * 2);
     --espacio-md: calc(var(--espacio-base) * 3);
     --espacio-lg: calc(var(--espacio-base) * 4);
     --espacio-xl: calc(var(--espacio-base) * 8);
+
+    /*==> radio bordes */
+    --borde-radio-sm: 0.25rem;
+    --borde-radio-md: 0.5rem;
+    --borde-radio-lg: 1rem;
+
+    /*==> sombra */
+    --sombra-suave: 0 4px 12px rgba(0, 0, 0, 0.08);
 }

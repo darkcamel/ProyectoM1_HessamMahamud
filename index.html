@@ -1,125 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Paleta de Color</title>
     <link rel="stylesheet" href="./css/styles.css" />
-    <script defer></script>
+    <script src="./js/script.js" defer></script>
 </head>
 
 <body>
-    <!--TÍTULO PRINCIPAL-->
+
+    <!-- ==<título principal>== -->
     <header class="header">
         <h1>Paleta de Colores</h1>
         <p>Galería de colores listos para copiar y pegar</p>
     </header>
 
-    <!--CONTENEDOR PRINCIPAL-->
-    <main class="contenedor">
-        <!--PALETA DE COLORES-->
-        <section class="galeria-color">
-            <article class="color1">
-                <p class="colores-info"></p>
-            </article>
+    <!-- ==<contenedor principal>== -->
+    <main class="app-layout">
 
-            <article class="color">
-                <p class="colores-info">#fff</p>
-            </article>
+        <!-- ==<panel de control izquierda>== -->
+        <section class="controls-panel">
+            <h2>Configuración de paleta</h2>
 
-            <article class="color">
-                <p class="colores-info">#fff</p>
-            </article>
+            <!-- ==<selector numero de colores paleta>== -->
+            <div class="controls-group">
+                <div class="selector-tamano">
+                    <label for="palette-size">Tamaño de la paleta</label>
+                    <select id="palette-size" name="palette-size">
+                        <option value="6">6 colores</option>
+                        <option value="8">8 colores</option>
+                        <option value="9">9 colores</option>
+                    </select>
+                </div>
+            </div>
 
-            <article class="color">
-                <p class="colores-info">#fff</p>
-            </article>
-
-            <article class="color">
-                <p class="colores-info">#fff</p>
-            </article>
-
-            <article class="color">
-                <p class="colores-info">#fff</p>
-            </article>
-
-            <article class="color">
-                <p class="colores-info">#fff</p>
-            </article>
-
-            <article class="color">
-                <p class="colores-info">#fff</p>
-            </article>
-
-            <article class="color">
-                <p class="colores-info">#fff</p>
-            </article>
-
-            <article class="color">
-                <p class="colores-info">#fff</p>
-            </article>
-
-            <article class="color">
-                <p class="colores-info">#fff</p>
-            </article>
-
-            <article class="color">
-                <p class="colores-info">#fff</p>
-            </article>
-
-            <article class="color">
-                <p class="colores-info">#fff</p>
-            </article>
-
+            <button class="button" id="generate-palette">Genera paleta de colores</button>
+            <!-- más adelante acá va microfeedback, etc. -->
         </section>
 
-        <section class="galeria-color">
-            <article class="color2">
-                <p class="colores-info"></p>
-            </article>
-        </section>
-
-        <section class="galeria-color">
-            <article class="color3">
-                <p class="colores-info"></p>
-            </article>
-        </section>
-
-        <section class="galeria-color">
-            <article class="color4">
-                <p class="colores-info"></p>
-            </article>
-        </section>
-
-        <section class="galeria-color">
-            <article class="color5">
-                <p class="colores-info"></p>
-            </article>
-        </section>
-
-        <section class="galeria-color">
-            <article class="color6">
-                <p class="colores-info"></p>
-            </article>
-        </section>
-
-        <section class="galeria-color">
-            <article class="color7">
-                <p class="colores-info"></p>
-            </article>
-        </section>
-
-        <section class="galeria-color">
-            <article class="color8">
-                <p class="colores-info"></p>
-            </article>
-        </section>
-
-        <section class="galeria-color">
-            <article class="color9">
-                <p class="colores-info"></p>
-            </article>
+        <!-- ==<paleta de colores>== -->
+        <section class="palette-panel" aria-labelledby="palette-heading">
+            <h2 id="palette-heading">Paleta de colores generada</h2>
+            <div class="palette-grid" id="palette-container">
+                <!--acá JS crea el contenido-->
+            </div>
         </section>
     </main>
 
