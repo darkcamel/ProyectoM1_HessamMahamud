@@ -10,79 +10,30 @@
 </head>
 
 <body>
-    <!--TÍTULO PRINCIPAL-->
+    <!--título principal-->
     <header class="header">
         <h1>Paleta de Colores</h1>
         <p>Galería de colores listos para copiar y pegar</p>
     </header>
 
-    <!--CONTENEDOR PRINCIPAL-->
+    <!--contenedor principal-->
     <main class="contenedor">
-        <!--PALETA DE COLORES-->
-        <section class="galeria-color">
-            <article class="color">
-                <p class="colores-info">#fff</p>
-            </article>
+        <!--panel de control izquierda-->
+        <section class="control-panel">
+            <h2>Controles</h2>
+            <!--selector numero de colores paleta-->
+            <div class="control-selector-tamaño">
+                <label for="palette-size">Tamaño de la paleta</label>
+                <select id="palette-size" name="palette-size">
+                    <option value="6">6 colores</option>
+                    <option value="8">8 colores</option>
+                    <option value="9">9 colores</option>
+                </select>
+            </div>
 
-            <article class="color">
-                <p class="colores-info">#fff</p>
-            </article>
-
-            <article class="color">
-                <p class="colores-info">#fff</p>
-            </article>
-
-            <article class="color">
-                <p class="colores-info">#fff</p>
-            </article>
-
-            <article class="color">
-                <p class="colores-info">#fff</p>
-            </article>
-
-            <article class="color">
-                <p class="colores-info">#fff</p>
-            </article>
-
-            <article class="color">
-                <p class="colores-info">#fff</p>
-            </article>
-
-            <article class="color">
-                <p class="colores-info">#fff</p>
-            </article>
-
-            <article class="color">
-                <p class="colores-info">#fff</p>
-            </article>
-
-            <article class="color">
-                <p class="colores-info">#fff</p>
-            </article>
-
-            <article class="color">
-                <p class="colores-info">#fff</p>
-            </article>
-
-            <article class="color">
-                <p class="colores-info">#fff</p>
-            </article>
-
-            <article class="color">
-                <p class="colores-info">#fff</p>
-            </article>
-
-            <article class="color">
-                <p class="colores-info">#fff</p>
-            </article>
-
-            <article class="color">
-                <p class="colores-info">#fff</p>
-            </article>
-
+            <button id="generate-pallete">Genera paleta de colores</button>
         </section>
-
-
+        <!--paleta de colores-->
     </main>
 
     <!-------------------->
