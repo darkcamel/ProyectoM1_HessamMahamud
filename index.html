@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Paleta de Color</title>
     <link rel="stylesheet" href="./css/styles.css" />
-    <script defer></script>
+    <script src="./js/script.js" defer></script>
 </head>
 
 <body>
@@ -18,14 +18,14 @@
     </header>
 
     <!-- ==<contenedor principal>== -->
-    <main class="contenedor">
+    <main class="app-layout">
         
         <!-- ==<panel de control izquierda>== -->
-        <section class="control-panel">
-            <h2>Controles</h2>
+        <section class="controls-panel">
+            <h2>Configuración de paleta</h2>
             
             <!-- ==<selector numero de colores paleta>== -->
-            <div class="control-selector-tamano">
+            <div class="controls-group">
                 <div class="selector-tamano">
                     <label for="palette-size">Tamaño de la paleta</label>
                     <select id="palette-size" name="palette-size">
@@ -36,13 +36,16 @@
                 </div>
             </div>
 
-            <button id="generate-pallete">Genera paleta de colores</button>
+            <button class="button" id="generate-palette">Genera paleta de colores</button>
             <!-- más adelante acá va microfeedback, etc. -->
         </section>
         
-        <!--paleta de colores-->
-        <section>
-            
+        <!-- ==<paleta de colores>== -->
+        <section class="palette-panel" aria-labelledby="palette-heading">
+            <h2 id="palette-heading">Paleta de colores generada</h2>
+            <div class="palette-grid" id="palette-container">
+                <!--acá JS crea el contenido-->
+            </div>
         </section>
     </main>
 
