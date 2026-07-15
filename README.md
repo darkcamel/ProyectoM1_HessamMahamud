@@ -1,4 +1,4 @@
-# Paleta de Colores
+# Generador de Paleta de Colores
 
 Esta es una paleta de colores escrita en HTML, CSS y JavaScript.
 
