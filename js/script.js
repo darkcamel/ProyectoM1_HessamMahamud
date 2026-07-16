@@ -18,16 +18,16 @@ function generarColorAleatorio() {
     const l = Math.floor(Math.random() * 21) + 45;
     // --> luminosidad 45% a 65%
     
-    const hsl = `hsl(${h}), ${s}%, ${l}%`;
-    const hex =
-    return { hsl, hex }
-}
+    const hsl = `hsl(${h}, ${s}%, ${l}%)`;
+    const hex = hslAHex(h, s, l);
+    return { hsl, hex };
+};
 
 //=< función para vaciar y crear >==
 function renderizaPaletaVacia(tamano) {
     contenedorPaleta.innerHTML = '';
 
-    for (let i = 0; i < size; i++) {
+    for (let i = 0; i < tamano; i++) {
         const tarjetaColor = document.createElement('div');
         tarjetaColor.classList.add('color-paleta');
         
