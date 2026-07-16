@@ -1,6 +1,6 @@
 /*==<layout>==*/
 
-/*==> header <== */
+/*==> header <==*/
 .header {
     text-align: center;
     background-color: var(--color-fondo-secundario);
@@ -20,7 +20,7 @@
     color: var(--color-subtitulo);
 }
 
-/*==> main layout <== */
+/*==> main layout <==*/
 .app-layout {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -63,6 +63,7 @@
     background-color: var(--color-fondo-secundario);
 }
 
+/*==> toast <==*/
 .toast {
     position: fixed;
     left: 50%;
@@ -84,3 +85,24 @@
     opacity: 1;
     transform: translateX(-50%) translateY(0);
 }
+
+/*==> accesibilidad <==*/
+/*--> foco visible */
+button:focus-visible,
+select:focus-visible {
+    outline: 3px solid var(--color-primario);
+    outline-offset: 2px;
+    border-radius: var(--borde-radio-sm);
+}
+
+/*==> responsive <==*/
+@media (max-width: 768px) {
+    .app-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .cuadricula-paleta {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
