@@ -6,16 +6,16 @@ const contenedorPaleta = document.getElementById('contenedor-paleta');
 //=< evento click >==
 generarBoton.addEventListener('click', () => {
     const tamano = parseInt(selectorTamano.value, 10);
-    renderizaPaletaVacia(tamano);
+    renderizaPaleta(tamano);
 });
 
 //==< color aleatorio hsl >==
 function generarColorAleatorio() {
     const h = Math.floor(Math.random() * 361);
     //--> matíz 360 grados
-    const s = Math.floor(Math.random() * 31) + 55;
+    const s = Math.floor(Math.random() * 81) + 20;
     // --> saturación de 55% a 85%
-    const l = Math.floor(Math.random() * 21) + 45;
+    const l = Math.floor(Math.random() * 81) + 20;
     // --> luminosidad 45% a 65%
 
     const hsl = `hsl(${h}, ${s}%, ${l}%)`;
@@ -24,19 +24,22 @@ function generarColorAleatorio() {
 };
 
 //=< función para vaciar y crear >==
-function renderizaPaletaVacia(tamano) {
+function renderizaPaleta(tamano) {
     contenedorPaleta.innerHTML = '';
 
     for (let i = 0; i < tamano; i++) {
+        const color = generarColorAleatorio();
+
         const tarjetaColor = document.createElement('div');
         tarjetaColor.classList.add('color-paleta');
+        tarjetaColor.style.backgroundColor = color.hsl;
 
-        const placeholderText = document.createElement('span');
-        placeholderText.textContent = `Color #${i + 1}`;
+        const textoHex = document.createElement('span');
+        textoHex.textContent = color.hex.toUpperCase();
 
-        tarjetaColor.appendChild(placeholderText);
+        tarjetaColor.appendChild(textoHex);
         contenedorPaleta.appendChild(tarjetaColor);
-    };
+    };   
 };
 
 //=< hsl a rgb >==
@@ -75,7 +78,22 @@ function hslARgb(h, s, l) {
 //=< rgb a hex >==
 function rgbAHex(r, g, b) {
     const aHex = (canal) => canal.toString(16).padStart(2, '0');
-    return `#${aHex(r)}${aHex(g)}${aHex(b)}`
-}
+    return `#${aHex(r)}${aHex(g)}${aHex(b)}`;
+};
 
 //=< hsl a hex >==
+function hslAHex(h, s, l) {
+    const [r, g, b] = hslARgb(h, s, l);
+    return rgbAHex(r, g, b);
+};
+
+//=< calcular luminancia para texto >==
+function calcularLuminancia(r, g, b) {
+    const rNorm = r / 255;
+    const gNorm = g / 255;
+    const bNorm = b / 255;
+
+    return 0.2126 * rNorm + 0.7152 * gNorm + 0.0722 * bNorm;
+};
+
+const colorTexto = luminancia > 0.5 ? 'var(--color-texto)' : 'var(--color-texto-claro)';
