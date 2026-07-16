@@ -1,26 +1,40 @@
 //=< elementos clave: variables definidas con elementos del html >==
-const generateButton = document.getElementById('generate-palette');
-const sizeSelect = document.getElementById('palette-size');
-const paletteContainer = document.getElementById('palette-container');
+const generarBoton = document.getElementById('generar-paleta');
+const selectorTamano = document.getElementById('tamano-paleta');
+const contenedorPaleta = document.getElementById('contenedor-paleta');
 
 //=< evento click >==
-generateButton.addEventListener('click', () => {
-    const size = parseInt(sizeSelect.value, 10);
-    renderEmptyPalette(size);
+generarBoton.addEventListener('click', () => {
+    const tamano = parseInt(selectorTamano.value, 10);
+    renderizaPaletaVacia(tamano);
 });
 
+//==< color aleatorio hsl >==
+function generarColorAleatorio() {
+    const h = Math.floor(Math.random() * 361);
+    //--> matíz 360 grados
+    const s = Math.floor(Math.random() * 31) + 55;
+    // --> saturación de 55% a 85%
+    const l = Math.floor(Math.random() * 21) + 45;
+    // --> luminosidad 45% a 65%
+    
+    const hsl = `hsl(${h}), ${s}%, ${l}%`;
+    const hex =
+    return { hsl, hex }
+}
+
 //=< función para vaciar y crear >==
-function renderEmptyPalette(size) {
-    paletteContainer.innerHTML = '';
+function renderizaPaletaVacia(tamano) {
+    contenedorPaleta.innerHTML = '';
 
     for (let i = 0; i < size; i++) {
-        const colorCard = document.createElement('div');
-        colorCard.classList.add('palette-color');
+        const tarjetaColor = document.createElement('div');
+        tarjetaColor.classList.add('color-paleta');
         
         const placeholderText = document.createElement('span');
         placeholderText.textContent = `Color #${i + 1}`;
         
-        colorCard.appendChild(placeholderText);
-        paletteContainer.appendChild(colorCard);
+        tarjetaColor.appendChild(placeholderText);
+        contenedorPaleta.appendChild(tarjetaColor);
     };
 };

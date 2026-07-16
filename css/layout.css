@@ -32,19 +32,19 @@
 }
 
 /*--> panel de controles (izquierdo) */
-.controls-panel {
+.panel-controles {
     display: flex;
     flex-direction: column;
     gap: var(--espacio-md);
 }
 
 /*--> panel de paleta (derecha) */
-.palette-panel {
+.panel-paleta {
     padding: var(--espacio-md);
 }
 
 /*--> grid de paleta */
-.palette-grid {
+.cuadricula-paleta {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     /* 3 columnas */
@@ -53,7 +53,7 @@
 }
 
 /*--> color individual (la que crea JS) */
-.palette-color {
+.tarjeta-color {
     display: flex;
     flex-direction: column;
     align-items: center;
