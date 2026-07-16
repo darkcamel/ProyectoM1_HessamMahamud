@@ -19,8 +19,12 @@ function generarColorAleatorio() {
     // --> luminosidad 45% a 65%
 
     const hsl = `hsl(${h}, ${s}%, ${l}%)`;
-    const hex = hslAHex(h, s, l);
-    return { hsl, hex };
+    
+    const [r, g, b] = hslARgb(h, s, l);
+    const hex = rgbAHex(r ,g ,b);
+    const luminancia = calcularLuminancia(r, g, b);
+    const colorTexto = luminancia > 0.5 ? 'var(--color-texto)' : 'var(--color-texto-claro)';
+    return { hsl, hex, colorTexto };
 };
 
 //=< función para vaciar y crear >==
@@ -36,6 +40,7 @@ function renderizaPaleta(tamano) {
 
         const textoHex = document.createElement('span');
         textoHex.textContent = color.hex.toUpperCase();
+        textoHex.style.color = color.colorTexto;
 
         tarjetaColor.appendChild(textoHex);
         contenedorPaleta.appendChild(tarjetaColor);
@@ -96,4 +101,3 @@ function calcularLuminancia(r, g, b) {
     return 0.2126 * rNorm + 0.7152 * gNorm + 0.0722 * bNorm;
 };
 
-const colorTexto = luminancia > 0.5 ? 'var(--color-texto)' : 'var(--color-texto-claro)';
