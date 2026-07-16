@@ -62,3 +62,25 @@
     box-shadow: var(--sombra-suave);
     background-color: var(--color-fondo-secundario);
 }
+
+.toast {
+    position: fixed;
+    left: 50%;
+    bottom: var(--espacio-lg);
+    transform: translateX(-50%) translateY(150%);
+
+    background-color: var(--color-fondo-oscuro);
+    color: var(--color-texto-claro);
+    padding: var(--espacio-sm) var(--espacio-md);
+    border-radius: var(--borde-radio-md);
+    box-shadow: var(--sombra-suave);
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform     0.3s ease;
+}
+
+.toast.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}

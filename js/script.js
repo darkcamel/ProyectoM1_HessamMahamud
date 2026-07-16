@@ -2,11 +2,13 @@
 const generarBoton = document.getElementById('generar-paleta');
 const selectorTamano = document.getElementById('tamano-paleta');
 const contenedorPaleta = document.getElementById('contenedor-paleta');
+const toast = document.getElementById('toast');
 
 //=< evento click >==
 generarBoton.addEventListener('click', () => {
     const tamano = parseInt(selectorTamano.value, 10);
     renderizaPaleta(tamano);
+    mostrarToast(`Paleta de ${tamano} colores generada`);
 });
 
 //==< color aleatorio hsl >==
@@ -101,3 +103,18 @@ function calcularLuminancia(r, g, b) {
     return 0.2126 * rNorm + 0.7152 * gNorm + 0.0722 * bNorm;
 };
 
+//=<toast>==
+let idTemporizadorToast = null;
+
+function mostrarToast(mensaje) {
+    toast.textContent = mensaje;
+    toast.classList.add('visible');
+
+    if (idTemporizadorToast) {
+        clearTimeout(idTemporizadorToast);
+    };
+
+    idTemporizadorToast = setTimeout(() => {
+        toast.classList.remove('visible');
+    }, 2500);
+};
