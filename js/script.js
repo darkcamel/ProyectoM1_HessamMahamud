@@ -1,8 +1,9 @@
-//=< elementos clave: variables definidas con elementos del html >==
+//=< elementos clave: variables globales definidas >==
 const generarBoton = document.getElementById('generar-paleta');
 const selectorTamano = document.getElementById('tamano-paleta');
 const contenedorPaleta = document.getElementById('contenedor-paleta');
 const toast = document.getElementById('toast');
+let paletaActual = [];
 
 //=< evento click >==
 generarBoton.addEventListener('click', () => {
@@ -21,16 +22,16 @@ function generarColorAleatorio() {
     // --> luminosidad 45% a 65%
 
     const hsl = `hsl(${h}, ${s}%, ${l}%)`;
-    
+
     const [r, g, b] = hslARgb(h, s, l);
-    const hex = rgbAHex(r ,g ,b);
+    const hex = rgbAHex(r, g, b);
     const luminancia = calcularLuminancia(r, g, b);
     const colorTexto = luminancia > 0.5 ? 'var(--color-texto)' : 'var(--color-texto-claro)';
     return { hsl, hex, colorTexto };
 };
 
 //=< función para vaciar y crear >==
-function renderizaPaleta(tamano) {
+/* function renderizaPaleta(tamano) {
     contenedorPaleta.innerHTML = '';
 
     for (let i = 0; i < tamano; i++) {
@@ -39,9 +40,6 @@ function renderizaPaleta(tamano) {
         const tarjetaColor = document.createElement('div');
         tarjetaColor.classList.add('color-paleta');
         tarjetaColor.style.backgroundColor = color.hsl;
-        /* tarjetaColor.setAttribute('tabindex', '0');
-        tarjetaColor.setAttribute('role', 'button');
-        tarjetaColor.setAttribute('aria-label' `Copiar código ${color.hex.toUpperCase()} al portapapeles`); */
 
         const textoHex = document.createElement('span');
         textoHex.textContent = color.hex.toUpperCase();
@@ -59,7 +57,68 @@ function renderizaPaleta(tamano) {
             };
         });
     };   
-};
+}; */
+
+//=< colores paleta nueva respetando bloqueo >==
+function crearNuevaPaleta(tamano) {
+    const nuevaPaleta = [];
+
+    for (let i = 0; i < tamano; i++) {
+        const colorAnterior = paletaActual[i];
+
+        if (colorAnterior && colorAnterior.bloqueado) {
+            nuevaPaleta.push(colorAnterior);
+        } else {
+            const colorNuevo = generarColorAleatorio();
+            colorNuevo.bloqueado = false;
+            nuevaPaleta.push(colorNuevo);
+        };
+    };
+}
+
+//=< renderiza colores en pantalla >==
+function renderizaPaleta() {
+    contenedorPaleta.innerHTML = '';
+
+    paletaActual.forEach((color, indice) => {
+        const tarjetaColor = document.createElement('div');
+        tarjetaColor.classList.add('color-paleta');
+        tarjetaColor.style.background = color.hsl;
+        
+        if (color.bloqueado) {
+            tarjetaColor.classList.add('bloqueado');
+        }
+
+        const textoHex = document.createElement('span');
+        textoHex.textContent = color.hex.toUpperCase();
+        textoHex.style.color = color.colorTexto;
+
+        const botonBloqueo = document.createElement('button');
+        botonBloqueo.type ='button';
+        botonBloqueo.classList.add('boton-bloqueo');
+        botonBloqueo.textContent = color.bloqueado ? '🔒' : '🔓';
+        botonBloqueo.setAttribute('aria-pressed', color.bloqueado ? 'true' : 'false');
+        botonBloqueo.setAttribute('aria-label', color.bloqueado ? 'Desbloquear color' : 'Bloquear color');
+
+        botonBloqueo.addEventListener('click', (evento) => {
+            evento.stopPropagation();
+            alternarBloqueo(indice);
+        });
+
+        tarjetaColor.appendChild(textoHex);
+        tarjetaColor.appendChild(botonBloqueo);
+        contenedorPaleta.appendChild(tarjetaColor);
+
+        tarjetaColor.addEventListener('click', () => copiarAlPortapapeles(color.hex));
+
+        tarjetaColor.addEventListener('keydown', (evento) => {
+            if (evento.key === 'Enter' || evento.key === ' ') {
+                evento.preventDefault();
+                copiarAlPortapapeles(color.hex);
+            };
+        });
+    });
+}
 
 //=< hsl a rgb >==
 function hslARgb(h, s, l) {
@@ -134,10 +193,10 @@ function mostrarToast(mensaje) {
 //=< copiar hex al portapapeles >==
 function copiarAlPortapapeles(hex) {
     navigator.clipboard.writeText(hex)
-    .then(() => {
-        mostrarToast(`Copiado ${hex.toUpperCase()} al portapapeles`);
-    })
-    .catch(() => {
-        mostrarToast(`No se pudo copiar el color`)
-    });
+        .then(() => {
+            mostrarToast(`Copiado ${hex.toUpperCase()} al portapapeles`);
+        })
+        .catch(() => {
+            mostrarToast(`No se pudo copiar el color`)
+        });
 };
