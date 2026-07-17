@@ -25,7 +25,28 @@
             <h2>Configuración de paleta</h2>
 
             <!-- ==<selector numero de colores paleta>== -->
-            <div class="grupo-controles">
+
+            <div class="radio-input">
+                <div class="radio-input-path">
+                    <div class="radioContainer1 radioContainer">
+                        <label class="label1" for="6">6</label>
+                        <input class="radio1" value="6" name="value-radio" id="6" type="radio" />
+                    </div>
+                    <div class="radioContainer radioContainer2">
+                        <label class="label2" for="8">8</label>
+                        <input class="radio2" value="8" name="value-radio" id="8" type="radio" />
+                    </div>
+                    <div class="radioContainer radioContainer3">
+                        <label class="label3" for="9">9</label>
+                        <input class="radio3" value="9" name="value-radio" id="9" type="radio" />
+                    </div>
+                </div>
+                <div class="knob">
+                    <div class="center"></div>
+                </div>
+            </div>
+
+            <!-- <div class="grupo-controles">
                 <div class="selector-tamano">
                     <label for="tamano-paleta">Tamaño de la paleta</label>
                     <select id="tamano-paleta" name="tamano-paleta">
@@ -34,15 +55,15 @@
                         <option value="9">9 colores</option>
                     </select>
                 </div>
-            </div>
+            </div> -->
 
             <!-- From Uiverse.io by dexter-st -->
             <div class="btn-container">
-                <div class="btn-drawer transition-top">expires in...</div>
-                <div class="btn-drawer transition-bottom">...8 hours</div>
+                <div class="btn-drawer transition-top">¿qué colores...</div>
+                <div class="btn-drawer transition-bottom">...saldrán?</div>
 
                 <button class="btn" id="generar-paleta">
-                    <span class="btn-text">Get Offer</span>
+                    <span class="btn-text">Generar paleta</span>
                 </button>
 
                 <svg class="btn-corner" xmlns="http://www.w3.org/2000/svg" viewBox="-1 1 32 32">
