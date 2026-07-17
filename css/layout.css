@@ -63,6 +63,16 @@
     background-color: var(--color-fondo-secundario);
 }
 
+/*--> clickeabilidad paleta mouse */
+.color-paleta {
+    cursor: pointer;
+}
+
+.color-paleta:focus-visible {
+    outline: 3px solid var(--color-primario);
+    outline-offset: 2px;
+}
+
 /*==> toast <==*/
 .toast {
     position: fixed;

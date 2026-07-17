@@ -39,6 +39,9 @@ function renderizaPaleta(tamano) {
         const tarjetaColor = document.createElement('div');
         tarjetaColor.classList.add('color-paleta');
         tarjetaColor.style.backgroundColor = color.hsl;
+        /* tarjetaColor.setAttribute('tabindex', '0');
+        tarjetaColor.setAttribute('role', 'button');
+        tarjetaColor.setAttribute('aria-label' `Copiar código ${color.hex.toUpperCase()} al portapapeles`); */
 
         const textoHex = document.createElement('span');
         textoHex.textContent = color.hex.toUpperCase();
@@ -46,6 +49,15 @@ function renderizaPaleta(tamano) {
 
         tarjetaColor.appendChild(textoHex);
         contenedorPaleta.appendChild(tarjetaColor);
+
+        tarjetaColor.addEventListener('click', () => copiarAlPortapapeles(color.hex));
+
+        tarjetaColor.addEventListener('keydown', (evento) => {
+            if (evento.key === 'Enter' || evento.key === ' ') {
+                evento.preventDefault();
+                copiarAlPortapapeles(color.hex);
+            };
+        });
     };   
 };
 
@@ -103,7 +115,7 @@ function calcularLuminancia(r, g, b) {
     return 0.2126 * rNorm + 0.7152 * gNorm + 0.0722 * bNorm;
 };
 
-//=<toast>==
+//=< mostrat toast >==
 let idTemporizadorToast = null;
 
 function mostrarToast(mensaje) {
@@ -112,9 +124,20 @@ function mostrarToast(mensaje) {
 
     if (idTemporizadorToast) {
         clearTimeout(idTemporizadorToast);
-    };
+    }
 
     idTemporizadorToast = setTimeout(() => {
         toast.classList.remove('visible');
     }, 2500);
+};
+
+//=< copiar hex al portapapeles >==
+function copiarAlPortapapeles(hex) {
+    navigator.clipboard.writeText(hex)
+    .then(() => {
+        mostrarToast(`Copiado ${hex.toUpperCase()} al portapapeles`);
+    })
+    .catch(() => {
+        mostrarToast(`No se pudo copiar el color`)
+    });
 };
