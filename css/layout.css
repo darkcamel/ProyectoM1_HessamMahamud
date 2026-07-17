@@ -47,10 +47,10 @@
 
 /*--> grid de paleta */
 .cuadricula-paleta {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
     grid-template-rows: auto;
-    gap: var(--espacio-md);
+    gap: var(--espacio-sm);
     justify-items: center;
 }
 
