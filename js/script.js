@@ -39,6 +39,9 @@ function renderizaPaleta(tamano) {
         const tarjetaColor = document.createElement('div');
         tarjetaColor.classList.add('color-paleta');
         tarjetaColor.style.backgroundColor = color.hsl;
+        /* tarjetaColor.setAttribute('tabindex', '0');
+        tarjetaColor.setAttribute('role', 'button');
+        tarjetaColor.setAttribute('aria-label' `Copiar código ${color.hex.toUpperCase()} al portapapeles`); */
 
         const textoHex = document.createElement('span');
         textoHex.textContent = color.hex.toUpperCase();
@@ -46,6 +49,15 @@ function renderizaPaleta(tamano) {
 
         tarjetaColor.appendChild(textoHex);
         contenedorPaleta.appendChild(tarjetaColor);
+
+        tarjetaColor.addEventListener('click', () => copiarAlPortapapeles(color.hex));
+
+        tarjetaColor.addEventListener('keydown', (evento) => {
+            if (evento.key === 'Enter' || evento.key === ' ') {
+                evento.preventDefault();
+                copiarAlPortapapeles(color.hex);
+            };
+        });
     };   
 };
 
