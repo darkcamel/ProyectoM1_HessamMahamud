@@ -103,7 +103,7 @@ function calcularLuminancia(r, g, b) {
     return 0.2126 * rNorm + 0.7152 * gNorm + 0.0722 * bNorm;
 };
 
-//=<toast>==
+//=< mostrat toast >==
 let idTemporizadorToast = null;
 
 function mostrarToast(mensaje) {
@@ -112,9 +112,20 @@ function mostrarToast(mensaje) {
 
     if (idTemporizadorToast) {
         clearTimeout(idTemporizadorToast);
-    };
+    }
 
     idTemporizadorToast = setTimeout(() => {
         toast.classList.remove('visible');
     }, 2500);
+};
+
+//=< copiar hex al portapapeles >==
+function copiarAlPortapapeles(hex) {
+    navigator.clipboard.writeText(hex)
+    .then(() => {
+        mostrarToast(`Copiado ${hex.toUpperCase()} al portapapeles`);
+    })
+    .catch(() => {
+        mostrarToast(`No se pudo copiar el color`)
+    });
 };
