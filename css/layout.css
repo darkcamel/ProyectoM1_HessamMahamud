@@ -31,14 +31,51 @@
     padding: var(--espacio-lg) var(--espacio-md);
 }
 
-/*--> panel de controles (izquierdo) */
+/*==> panel de controles (izquierdo) <==*/
 .panel-control {
     display: flex;
     flex-direction: column;
     gap: var(--espacio-md);
 }
+/*==> panel guardado de colores <==*/
+.colores-guardados-panel {
+    border-top: 1px solid var(--color-fondo-secundario);
+    padding-top: var(--espacio-md);
+    margin-top: var(--espacio-sm);
+}
 
-/*--> panel de paleta (derecha) */
+.lista-colores-guardados {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espacio-sm);
+    margin-top: var(--espacio-sm);
+    min-height: 2.5rem;
+}
+
+.color-guardado {
+    position: relative;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--borde-radio-sm);
+    box-shadow: var(--sombra-suave);
+}
+
+.boton-eliminar-guardado {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--color-fondo-oscuro);
+    color: var(--color-texto-claro);
+    font-size: 0.75rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+/*==> panel de paleta (derecha) <==*/
 .panel-paleta {
     padding: var(--espacio-md);
 }
@@ -136,44 +173,6 @@ select:focus-visible {
     .cuadricula-paleta {
         grid-template-columns: repeat(2, 1fr);
     }
-}
-
-/*==> panel guardado de colores <==*/
-.colores-guardados-panel {
-    border-top: 1px solid var(--color-fondo-secundario);
-    padding-top: var(--espacio-md);
-    margin-top: var(--espacio-sm);
-}
-
-.lista-colores-guardados {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--espacio-sm);
-    margin-top: var(--espacio-sm);
-    min-height: 2.5rem;
-}
-
-.color-guardado {
-    position: relative;
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: var(--borde-radio-sm);
-    box-shadow: var(--sombra-suave);
-}
-
-.boton-eliminar-guardado {
-    position: absolute;
-    top: -6px;
-    right: -6px;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    border: none;
-    background-color: var(--color-fondo-oscuro);
-    color: var(--color-texto-claro);
-    font-size: 0.75rem;
-    line-height: 1;
-    cursor: pointer;
 }
 
 /*==> animación entrada de tarjetas <==*/
