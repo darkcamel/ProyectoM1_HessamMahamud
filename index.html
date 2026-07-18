@@ -24,7 +24,7 @@
         <section class="panel-control">
             <h2>Configuración de paleta</h2>
 
-            <!-- ==<selector numero de colores paleta>== -->
+            <!-- ==<selector tamaño paleta>== -->
             <div class="grupo-controles">
                 <div class="selector-tamano">
                     <label for="tamano-paleta">Tamaño de la paleta</label>
@@ -36,8 +36,38 @@
                 </div>
             </div>
 
-            <button class="boton" id="generar-paleta">Genera paleta de colores</button>
-            <!-- más adelante acá va microfeedback, etc. -->
+            <!-- ==<boton>== --> <!-- From Uiverse.io by dexter-st -->
+            <div class="btn-container">
+                <div class="btn-drawer transition-top">¿qué colores...</div>
+                <div class="btn-drawer transition-bottom">...saldrán?</div>
+
+                <button class="btn" id="generar-paleta">
+                    <span class="btn-text">Generar paleta</span>
+                </button>
+
+                <svg class="btn-corner" xmlns="http://www.w3.org/2000/svg" viewBox="-1 1 32 32">
+                    <path d="M32,32C14.355,32,0,17.645,0,0h.985c0,17.102,13.913,31.015,31.015,31.015v.985Z"></path>
+                </svg>
+                <svg class="btn-corner" xmlns="http://www.w3.org/2000/svg" viewBox="-1 1 32 32">
+                    <path d="M32,32C14.355,32,0,17.645,0,0h.985c0,17.102,13.913,31.015,31.015,31.015v.985Z"></path>
+                </svg>
+                <svg class="btn-corner" xmlns="http://www.w3.org/2000/svg" viewBox="-1 1 32 32">
+                    <path d="M32,32C14.355,32,0,17.645,0,0h.985c0,17.102,13.913,31.015,31.015,31.015v.985Z"></path>
+                </svg>
+                <svg class="btn-corner" xmlns="http://www.w3.org/2000/svg" viewBox="-1 1 32 32">
+                    <path d="M32,32C14.355,32,0,17.645,0,0h.985c0,17.102,13.913,31.015,31.015,31.015v.985Z"></path>
+                </svg>
+            </div>
+
+            <div class="colores-guardados-panel">
+                <h3>Colores guardados</h3>
+                <button class="boton-secundario" id="guardar-bloqueados" type="button">
+                    Guardar colores bloqueados
+                </button>
+                <div class="lista-colores-guardados" id="lista-colores-guardados" aria-live="polite">
+                    <!--js pinta colores guardados-->
+                </div>
+            </div>
         </section>
 
         <!-- ==<paleta de colores>== -->
@@ -53,7 +83,7 @@
     <footer>
 
     </footer>
-    
+
     <!-- ==<toast>== -->
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
 </body>

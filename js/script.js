@@ -1,13 +1,19 @@
-//=< elementos clave: variables definidas con elementos del html >==
+//=< elementos clave: variables globales definidas >==
 const generarBoton = document.getElementById('generar-paleta');
 const selectorTamano = document.getElementById('tamano-paleta');
 const contenedorPaleta = document.getElementById('contenedor-paleta');
 const toast = document.getElementById('toast');
+let paletaActual = [];
+const CLAVE_STORAGE = 'coloresGuardados';
+const botonGuardarBloqueados = document.getElementById('guardar-bloqueados');
+const listaColoresGuardados = document.getElementById('lista-colores-guardados');
+
+/* console.log(generarBoton, selectorTamano, contenedorPaleta, toast), paletaActual; */
 
 //=< evento click >==
-generarBoton.addEventListener('click', () => {
+generarBoton.addEventListener('click',  () => {
     const tamano = parseInt(selectorTamano.value, 10);
-    renderizaPaleta(tamano);
+    crearNuevaPaleta(tamano);
     mostrarToast(`Paleta de ${tamano} colores generada`);
 });
 
@@ -21,33 +27,65 @@ function generarColorAleatorio() {
     // --> luminosidad 45% a 65%
 
     const hsl = `hsl(${h}, ${s}%, ${l}%)`;
-    
+
     const [r, g, b] = hslARgb(h, s, l);
-    const hex = rgbAHex(r ,g ,b);
+    const hex = rgbAHex(r, g, b);
     const luminancia = calcularLuminancia(r, g, b);
     const colorTexto = luminancia > 0.5 ? 'var(--color-texto)' : 'var(--color-texto-claro)';
     return { hsl, hex, colorTexto };
 };
 
-//=< función para vaciar y crear >==
-function renderizaPaleta(tamano) {
-    contenedorPaleta.innerHTML = '';
+//=< colores paleta nueva respetando bloqueo >==
+function crearNuevaPaleta(tamano) {
+    const nuevaPaleta = [];
 
     for (let i = 0; i < tamano; i++) {
-        const color = generarColorAleatorio();
+        const colorAnterior = paletaActual[i];
 
+        if (colorAnterior && colorAnterior.bloqueado) {
+            nuevaPaleta.push(colorAnterior);
+        } else {
+            const colorNuevo = generarColorAleatorio();
+            colorNuevo.bloqueado = false;
+            nuevaPaleta.push(colorNuevo);
+        };
+    };
+
+    paletaActual = nuevaPaleta
+    renderizaPaleta();
+};
+
+//=< renderiza colores en pantalla >==
+function renderizaPaleta() {
+    contenedorPaleta.innerHTML = '';
+
+    paletaActual.forEach((color, indice) => {
         const tarjetaColor = document.createElement('div');
         tarjetaColor.classList.add('color-paleta');
-        tarjetaColor.style.backgroundColor = color.hsl;
-        /* tarjetaColor.setAttribute('tabindex', '0');
-        tarjetaColor.setAttribute('role', 'button');
-        tarjetaColor.setAttribute('aria-label' `Copiar código ${color.hex.toUpperCase()} al portapapeles`); */
+        tarjetaColor.style.background = color.hsl;
+
+        if (color.bloqueado) {
+            tarjetaColor.classList.add('bloqueado');
+        }
 
         const textoHex = document.createElement('span');
         textoHex.textContent = color.hex.toUpperCase();
         textoHex.style.color = color.colorTexto;
 
+        const botonBloqueo = document.createElement('button');
+        botonBloqueo.type ='button';
+        botonBloqueo.classList.add('boton-bloqueo');
+        botonBloqueo.textContent = color.bloqueado ? '🔒' : '🔓';
+        botonBloqueo.setAttribute('aria-pressed', color.bloqueado ? 'true' : 'false');
+        botonBloqueo.setAttribute('aria-label', color.bloqueado ? 'Desbloquear color' : 'Bloquear color');
+
+        botonBloqueo.addEventListener('click', (evento) => {
+            evento.stopPropagation();
+            alternarBloqueo(indice);
+        });
+
         tarjetaColor.appendChild(textoHex);
+        tarjetaColor.appendChild(botonBloqueo);
         contenedorPaleta.appendChild(tarjetaColor);
 
         tarjetaColor.addEventListener('click', () => copiarAlPortapapeles(color.hex));
@@ -58,7 +96,13 @@ function renderizaPaleta(tamano) {
                 copiarAlPortapapeles(color.hex);
             };
         });
-    };   
+    });
+};
+
+//=< cambia a estado de boqueo >==
+function alternarBloqueo(indice) {
+    paletaActual[indice].bloqueado = !paletaActual[indice].bloqueado;
+    renderizaPaleta();
 };
 
 //=< hsl a rgb >==
@@ -134,10 +178,86 @@ function mostrarToast(mensaje) {
 //=< copiar hex al portapapeles >==
 function copiarAlPortapapeles(hex) {
     navigator.clipboard.writeText(hex)
-    .then(() => {
-        mostrarToast(`Copiado ${hex.toUpperCase()} al portapapeles`);
-    })
-    .catch(() => {
-        mostrarToast(`No se pudo copiar el color`)
+        .then(() => {
+            mostrarToast(`Copiado ${hex.toUpperCase()} al portapapeles`);
+        })
+        .catch(() => {
+            mostrarToast(`No se pudo copiar el color`)
+        });
+};
+
+//=< leer colores guardados en localStorage >==
+function obtenerColoresGuradados() {
+    const datosGuardados = localStorage.getItem(CLAVE_STORAGE);
+    return datosGuardados ? JSON.parse(datosGuardados) : [];
+};
+
+//=< escribir colores guardados en localStorage >==
+function guardarEnStorage(coloresGuardados) {
+    localStorage.setItem(CLAVE_STORAGE, JSON.stringify(coloresGuardados));
+};
+
+//=< guardar los colores bloqueados de la paleta actual >==
+function guardarColoresBloqueados() {
+    const bloqueadosActuales = paletaActual.filter((color) => color.bloqueado);
+
+    if (bloqueadosActuales.length === 0) {
+        mostrarToast('No hay colores bloqueados para guardar');
+        return;
+    };
+
+    const coloresGuardados = obtenerColoresGuradados();
+
+    bloqueadosActuales.forEach((color) => {
+        const yaExiste = coloresGuardados.some((guardado) => guardado.hex === color.hex);
+
+        if (!yaExiste) {
+            coloresGuardados.push({
+                hex: color.hex,
+                hsl: color.hsl,
+                colorTexto: color.colorTexto,
+            });
+        };
+    });
+
+    guardarEnStorage(coloresGuardados);
+    renderizaColoresGuardados();
+    mostrarToast('Colores bloqueados guardados');
+};
+
+//=< pintar colores guardados en DOM >==
+function renderizaColoresGuardados() {
+    const coloresGuardados = obtenerColoresGuradados();
+    listaColoresGuardados.innerHTML = '';
+
+    coloresGuardados.forEach((color) => {
+        const item = document.createElement('div');
+        item.classList.add('color-guardado');
+        item.style.background = color.hsl;
+        item.title = color.hex.toUpperCase();
+
+        const botonEliminar = document.createElement('button');
+        botonEliminar.type = 'button';
+        botonEliminar.classList.add('boton-eliminar-guardado');
+        botonEliminar.textContent = '×';
+
+        botonEliminar.setAttribute('aria-label', `Eliminar color guardado ${color.hex.toUpperCase()}`);
+        botonEliminar.addEventListener('click', () => eliminarColorGuardado(color.hex));
+
+        item.appendChild(botonEliminar);
+        listaColoresGuardados.appendChild(item);
     });
 };
+
+//=< eliminar color guardado específico >==
+function eliminarColorGuardado(hex) {
+    const coloresGuardados = obtenerColoresGuradados();
+    const coloresFiltrados = coloresGuardados.filter((color) => color.hex !== hex);
+
+    guardarEnStorage(coloresFiltrados);
+    renderizaColoresGuardados();
+};
+
+botonGuardarBloqueados.addEventListener('click', guardarColoresBloqueados);
+renderizaColoresGuardados();
+//=> cuando carga p+agina renderiza lo guardado antes
