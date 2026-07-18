@@ -2,7 +2,7 @@
 
 Aplicación web estática e interactiva que genera paletas de colores aleatorias, con opciones de personalización y persistencia local. Proyecto integrador del Módulo 1 — Full Stack (Henry).
 
-**Demo en vivo:** _agregar acá el link de GitHub Pages una vez desplegado_
+**Demo en vivo:** _[Paleta de color](https://darkcamel.github.io/ProyectoM1_HessamMahamud/)_
 
 ## Índice
 
@@ -59,33 +59,33 @@ Aplicación web estática e interactiva que genera paletas de colores aleatorias
 
 ## Cómo usar la aplicación
 
-1. Elegí el tamaño de paleta deseado (6, 8 o 9 colores) en el selector.
-2. Presioná **"Generar paleta de colores"**.
-3. Hacé clic sobre cualquier color para copiar su código HEX al portapapeles.
-4. Presioná el ícono de candado (🔓/🔒) sobre un color para bloquearlo — ese color se va a mantener en las próximas paletas que generes.
-5. Presioná **"Guardar colores bloqueados"** para agregarlos a tu colección persistente en el panel izquierdo. Esa colección se mantiene aunque recargues o cierres el navegador.
-6. Para eliminar un color guardado, presioná la "×" sobre su miniatura.
+1. Elija el tamaño de paleta deseado (6, 8 o 9 colores) en el selector.
+2. Presione **"Generar paleta nueva"**.
+3. Haga clic sobre cualquier color para copiar su código HEX al portapapeles.
+4. Presione el ícono de candado (🔓/🔒) sobre un color para bloquearlo — ese color se va a mantener en las próximas paletas que genere.
+5. Presione **"Guardar colores bloqueados"** para agregarlos a su colección persistente en el panel izquierdo. Esa colección se mantiene aunque recargue o cierre el navegador.
+6. Para eliminar un color guardado, presione la "×" sobre su miniatura.
 
-Toda la aplicación es navegable por teclado (tecla `Tab` para moverte entre controles, `Enter`/`Espacio` para activar botones y tarjetas de color).
+Toda la aplicación es navegable por teclado (tecla `Tab` para moverse entre controles, `Enter`/`Espacio` para activar botones y tarjetas de color).
 
 ## Cómo correrlo localmente
 
-1. Cloná el repositorio:
+1. Clone el repositorio:
    ```bash
    git clone <url-de-tu-repositorio>
    cd <nombre-de-la-carpeta>
    ```
-2. **Importante:** la función de copiar al portapapeles requiere un contexto seguro (`https://` o `http://localhost`) — no funciona si abrís `index.html` directamente con doble clic (`file://`).
+2. **Importante:** la función de copiar al portapapeles requiere un contexto seguro (`https://` o `http://localhost`) — no funciona si abre `index.html` directamente con doble clic (`file://`).
 3. La forma más simple de levantarlo es con la extensión **Live Server** de VS Code: clic derecho sobre `index.html` → **"Open with Live Server"**.
    - Alternativa sin VS Code: desde la carpeta del proyecto, correr `python -m http.server` y abrir `http://localhost:8000` en el navegador.
 
 ## Cómo desplegarlo en GitHub Pages
 
-1. Subí el proyecto a un repositorio público de GitHub.
-2. Andá a **Settings → Pages** en el repositorio.
-3. En "Source", elegí la rama `main` (o la que corresponda) y la carpeta raíz (`/`).
-4. Guardá los cambios. GitHub va a generar una URL del estilo `https://<usuario>.github.io/<repositorio>/` en unos minutos.
-5. Actualizá el link de "Demo en vivo" al principio de este README con esa URL.
+1. Suba el proyecto a un repositorio público de GitHub.
+2. Ande a **Settings → Pages** en el repositorio.
+3. En "Source", elija la rama `main` (o la que corresponda) y la carpeta raíz (`/`).
+4. Guarde los cambios. GitHub va a generar una URL del estilo `https://<usuario>.github.io/<repositorio>/` en unos minutos.
+5. Actualice el link de "Demo en vivo" al principio de este README con esa URL.
 
 ## Accesibilidad
 
