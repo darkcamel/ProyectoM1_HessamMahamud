@@ -198,3 +198,18 @@ select:focus-visible {
 .color-paleta:nth-child(7) { animation-delay: 0.24s; }
 .color-paleta:nth-child(8) { animation-delay: 0.28s; }
 .color-paleta:nth-child(9) { animation-delay: 0.32s; }
+
+/*==> feedback botones sutil <==*/
+.boton-bloqueo,
+.boton-eliminar-guardado {
+    transition: transform 0.15s ease;
+}
+
+.boton-bloqueo:hover {
+    transform: translateY(-2px);
+}
+
+.boton-bloqueo:active,
+.boton-eliminar-guardado:active {
+    transform: scale(0.92);
+}
