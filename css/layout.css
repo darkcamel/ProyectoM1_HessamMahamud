@@ -73,6 +73,28 @@
     outline-offset: 2px;
 }
 
+/*==> botón de bloqueo <==*/
+.boton-bloqueo {
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: var(--espacio-xs);
+    line-height: 1;
+}
+
+.boton-bloqueo:focus-visible {
+    outline: 3px solid var(--color-primario);
+    outline-offset: 2px;
+    border-radius: var(--borde-radio-sm);
+}
+
+/*==> tarjeta bloqueada <==*/
+.color-paleta.bloqueado {
+    outline: 3px solid var(--color-primario-oscuro);
+    outline-offset: -3px;
+}
+
 /*==> toast <==*/
 .toast {
     position: fixed;
