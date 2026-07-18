@@ -35,7 +35,7 @@
     max-height: 100px;
     aspect-ratio: 1;
     margin: auto;
-    background: var(--color-fondo-oscuro)/* white */;
+    background: var(--color-fondo-oscuro);
     clip-path: polygon(
       100% 50%,
       91.48% 56.57%,
@@ -193,10 +193,6 @@
       }
     }
   }
-}
-
-.contenedor-button {
-    background-color: var(--color-fondo-oscuro);
 }
 
 @keyframes star-rotate {
