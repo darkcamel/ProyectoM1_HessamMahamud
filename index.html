@@ -24,7 +24,7 @@
         <section class="panel-control">
             <h2>Configuración de paleta</h2>
 
-            <!-- ==<selector numero de colores paleta>== -->
+            <!-- ==<selector tamaño paleta>== -->
             <div class="grupo-controles">
                 <div class="selector-tamano">
                     <label for="tamano-paleta">Tamaño de la paleta</label>
@@ -36,7 +36,7 @@
                 </div>
             </div>
 
-            <!-- From Uiverse.io by dexter-st -->
+            <!-- ==<boton>== --> <!-- From Uiverse.io by dexter-st -->
             <div class="btn-container">
                 <div class="btn-drawer transition-top">¿qué colores...</div>
                 <div class="btn-drawer transition-bottom">...saldrán?</div>
@@ -59,8 +59,15 @@
                 </svg>
             </div>
 
-            <!-- <button class="boton" id="generar-paleta">Genera paleta de colores</button> -->
-            <!-- más adelante acá va microfeedback, etc. -->
+            <div class="colores-guardados-panel">
+                <h3>Colores guardados</h3>
+                <button class="boton-secundario" id="guardar-bloqueados" type="button">
+                    Guardar colores bloqueados
+                </button>
+                <div class="lista-colores-guardados" id="lista-colores-guardados" aria-live="polite">
+                    <!--js pinta colores guardados-->
+                </div>
+            </div>
         </section>
 
         <!-- ==<paleta de colores>== -->
