@@ -164,6 +164,19 @@ select:focus-visible {
     border-radius: var(--borde-radio-sm);
 }
 
+/*--> respetar preferencia menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+    .color-paleta,
+    .toast,
+    .boton,
+    .boton-bloqueo,
+    .boton-secundario,
+    .boton-eliminar-guardado {
+        animation: none;
+        transition: none;
+    }
+}
+
 /*==> responsive <==*/
 @media (max-width: 768px) {
     .app-layout {
