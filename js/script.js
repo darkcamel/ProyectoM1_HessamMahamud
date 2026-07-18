@@ -32,35 +32,6 @@ function generarColorAleatorio() {
     return { hsl, hex, colorTexto };
 };
 
-//=< función para vaciar y crear >==
-/* function renderizaPaleta(tamano) {
-    contenedorPaleta.innerHTML = '';
-
-    for (let i = 0; i < tamano; i++) {
-        const color = generarColorAleatorio();
-
-        const tarjetaColor = document.createElement('div');
-        tarjetaColor.classList.add('color-paleta');
-        tarjetaColor.style.backgroundColor = color.hsl;
-
-        const textoHex = document.createElement('span');
-        textoHex.textContent = color.hex.toUpperCase();
-        textoHex.style.color = color.colorTexto;
-
-        tarjetaColor.appendChild(textoHex);
-        contenedorPaleta.appendChild(tarjetaColor);
-
-        tarjetaColor.addEventListener('click', () => copiarAlPortapapeles(color.hex));
-
-        tarjetaColor.addEventListener('keydown', (evento) => {
-            if (evento.key === 'Enter' || evento.key === ' ') {
-                evento.preventDefault();
-                copiarAlPortapapeles(color.hex);
-            };
-        });
-    };   
-}; */
-
 //=< colores paleta nueva respetando bloqueo >==
 function crearNuevaPaleta(tamano) {
     const nuevaPaleta = [];
