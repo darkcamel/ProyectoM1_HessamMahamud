@@ -4,6 +4,9 @@ const selectorTamano = document.getElementById('tamano-paleta');
 const contenedorPaleta = document.getElementById('contenedor-paleta');
 const toast = document.getElementById('toast');
 let paletaActual = [];
+const CLAVE_STORAGE = 'coloresGuardados';
+const botonGuardarBloqueados = document.getElementById('guardar-bloqueados');
+const listaColoresGuardados = document.getElementById('lista-colores-guardados');
 
 /* console.log(generarBoton, selectorTamano, contenedorPaleta, toast), paletaActual; */
 
@@ -182,3 +185,79 @@ function copiarAlPortapapeles(hex) {
             mostrarToast(`No se pudo copiar el color`)
         });
 };
+
+//=< leer colores guardados en localStorage >==
+function obtenerColoresGuradados() {
+    const datosGuardados = localStorage.getItem(CLAVE_STORAGE);
+    return datosGuardados ? JSON.parse(datosGuardados) : [];
+};
+
+//=< escribir colores guardados en localStorage >==
+function guardarEnStorage(coloresGuardados) {
+    localStorage.setItem(CLAVE_STORAGE, JSON.stringify(coloresGuardados));
+};
+
+//=< guardar los colores bloqueados de la paleta actual >==
+function guardarColoresBloqueados() {
+    const bloqueadosActuales = paletaActual.filter((color) => color.bloqueado);
+
+    if (bloqueadosActuales.length === 0) {
+        mostrarToast('No hay colores bloqueados para guardar');
+        return;
+    };
+
+    const coloresGuardados = obtenerColoresGuradados();
+
+    bloqueadosActuales.forEach((color) => {
+        const yaExiste = coloresGuardados.some((guardado) => guardado.hex === color.hex);
+
+        if (!yaExiste) {
+            coloresGuardados.push({
+                hex: color.hex,
+                hsl: color.hsl,
+                colorTexto: color.colorTexto,
+            });
+        };
+    });
+
+    guardarEnStorage(coloresGuardados);
+    renderizaColoresGuardados();
+    mostrarToast('Colores bloqueados guardados');
+};
+
+//=< pintar colores guardados en DOM >==
+function renderizaColoresGuardados() {
+    const coloresGuardados = obtenerColoresGuradados();
+    listaColoresGuardados.innerHTML = '';
+
+    coloresGuardados.forEach((color) => {
+        const item = document.createElement('div');
+        item.classList.add('color-guardado');
+        item.style.background = color.hsl;
+        item.title = color.hex.toUpperCase();
+
+        const botonEliminar = document.createElement('button');
+        botonEliminar.type = 'button';
+        botonEliminar.classList.add('boton-eliminar-guardado');
+        botonEliminar.textContent = '×';
+
+        botonEliminar.setAttribute('aria-label', `Eliminar color guardado ${color.hex.toUpperCase()}`);
+        botonEliminar.addEventListener('click', () => eliminarColorGuardado(color.hex));
+
+        item.appendChild(botonEliminar);
+        listaColoresGuardados.appendChild(item);
+    });
+};
+
+//=< eliminar color guardado específico >==
+function eliminarColorGuardado(hex) {
+    const coloresGuardados = obtenerColoresGuradados();
+    const coloresFiltrados = coloresGuardados.filter((color) => color.hex !== hex);
+
+    guardarEnStorage(coloresFiltrados);
+    renderizaColoresGuardados();
+};
+
+botonGuardarBloqueados.addEventListener('click', guardarColoresBloqueados);
+renderizaColoresGuardados();
+//=> cuando carga p+agina renderiza lo guardado antes
