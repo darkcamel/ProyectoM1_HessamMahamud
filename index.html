@@ -25,18 +25,22 @@
             <h2>Configuración de paleta</h2>
 
             <!-- ==<selector tamaño paleta>== -->
-            <div class="grupo-controles">
-                <div class="selector-tamano">
-                    <label for="tamano-paleta">Tamaño de la paleta</label>
-                    <select id="tamano-paleta" name="tamano-paleta">
-                        <option value="6">6 colores</option>
-                        <option value="8">8 colores</option>
-                        <option value="9">9 colores</option>
-                    </select>
-                </div>
-            </div>
+            <section class="grupo-controles">
+                <label for="tamano-paleta">Tamaño paleta</label>
+                <select id="tamano-paleta" name="tamano-paleta">
+                    <option value="6">6 colores</option>
+                    <option value="8">8 colores</option>
+                    <option value="9">9 colores</option>
+                </select>
+                <label for="formato-color">Formato</label>
+                <select id="formato-color" name="formato-color">
+                    <option>HEX</option>
+                    <option>HSL</option>
+                    <option>RGB</option>
+                </select>
+            </section>
 
-            <!-- ==<boton>== --> <!-- From Uiverse.io by augustin_4687 -->
+            <!-- ==<boton generar paleta>== --> <!-- From Uiverse.io by augustin_4687 -->
             <button class="button" id="generar-paleta">
                 <div class="contenedor-button">
                     <div>

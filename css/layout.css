@@ -31,13 +31,33 @@
     padding: var(--espacio-lg) var(--espacio-md);
 }
 
-/*==> panel de controles (izquierdo) <==*/
+section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--espacio-xs);
+    padding: var(--espacio-xs) var(--espacio-sm);
+    background: var(--color-fondo);
+    border-radius: var(--borde-radio-lg);
+    border: 1px solid var(--color-fondo-secundario);
+    box-shadow: var(--sombra-suave);
+}
+
+/*==> panel de controles (izquierda) <==*/
 .panel-control {
     display: flex;
     flex-direction: column;
     gap: var(--espacio-md);
 }
-/*==> panel guardado de colores <==*/
+
+/*--> selectores tamaño paleta y formato */
+.grupo-controles {
+    display: flex;
+    flex-direction: column;
+}
+
+/*==> panel guardado de colores (izquierda) <==*/
 .colores-guardados-panel {
     border-top: 1px solid var(--color-fondo-secundario);
     padding-top: var(--espacio-md);
