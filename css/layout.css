@@ -117,6 +117,54 @@ section {
 }
 
 /*====================================
+SELECTOR MODERNO
+====================================*/
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    width: 100%;
+    padding: var(--espacio-sm) var(--espacio-md);
+    padding-right: 2.5rem;
+
+    border: 2px solid var(--color-fondo-secundario);
+    border-radius: var(--borde-radio-md);
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+
+    font-family: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d85326' stroke-width='2'><path d='M6 9l6 6 6-6'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1rem;
+}
+
+select:hover {
+    border-color: var(--color-primario-claro);
+}
+
+select:focus-visible {
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 3px hsl(15, 70%, 50%, 0.15);
+    outline: none;
+}
+
+.grupo-controles label {
+    font-weight: 600;
+    color: var(--color-texto);
+}
+
+.grupo-controles select {
+    margin-bottom: var(--espacio-sm);
+}
+
+/*====================================
   5. PANEL DE PALETA (derecha)
 ====================================*/
 .panel-paleta {
