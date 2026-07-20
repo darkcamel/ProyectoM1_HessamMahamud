@@ -1,4 +1,4 @@
-//=< elementos clave: variables globales definidas >==
+//=< variables globales >==
 const generarBoton = document.getElementById('generar-paleta');
 const selectorTamano = document.getElementById('tamano-paleta');
 const contenedorPaleta = document.getElementById('contenedor-paleta');
@@ -7,15 +7,19 @@ let paletaActual = [];
 const CLAVE_STORAGE = 'coloresGuardados';
 const botonGuardarBloqueados = document.getElementById('guardar-bloqueados');
 const listaColoresGuardados = document.getElementById('lista-colores-guardados');
+let idTemporizadorToast = null;
 
-//=< evento click >==
+//=< eventos >==
 generarBoton.addEventListener('click',  () => {
     const tamano = parseInt(selectorTamano.value, 10);
     crearNuevaPaleta(tamano);
     mostrarToast(`Paleta de ${tamano} colores generada`);
 });
 
-//==< color aleatorio hsl >==
+botonGuardarBloqueados.addEventListener('click', guardarColoresBloqueados);
+renderizaColoresGuardados();
+
+//=< funciones >==
 function generarColorAleatorio() {
     const h = Math.floor(Math.random() * 361);
     //--> matíz 360 grados
@@ -33,7 +37,6 @@ function generarColorAleatorio() {
     return { hsl, hex, colorTexto };
 };
 
-//=< colores paleta nueva respetando bloqueo >==
 function crearNuevaPaleta(tamano) {
     const nuevaPaleta = [];
 
@@ -53,7 +56,6 @@ function crearNuevaPaleta(tamano) {
     renderizaPaleta();
 };
 
-//=< renderiza colores en pantalla >==
 function renderizaPaleta() {
     contenedorPaleta.innerHTML = '';
 
@@ -97,13 +99,11 @@ function renderizaPaleta() {
     });
 };
 
-//=< cambia a estado de boqueo >==
 function alternarBloqueo(indice) {
     paletaActual[indice].bloqueado = !paletaActual[indice].bloqueado;
     renderizaPaleta();
 };
 
-//=< hsl a rgb >==
 function hslARgb(h, s, l) {
     h /= 360;
     s /= 100;
@@ -136,19 +136,16 @@ function hslARgb(h, s, l) {
     return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
 };
 
-//=< rgb a hex >==
 function rgbAHex(r, g, b) {
     const aHex = (canal) => canal.toString(16).padStart(2, '0');
     return `#${aHex(r)}${aHex(g)}${aHex(b)}`;
 };
 
-//=< hsl a hex >==
 function hslAHex(h, s, l) {
     const [r, g, b] = hslARgb(h, s, l);
     return rgbAHex(r, g, b);
 };
 
-//=< calcular luminancia para texto >==
 function calcularLuminancia(r, g, b) {
     const rNorm = r / 255;
     const gNorm = g / 255;
@@ -156,9 +153,6 @@ function calcularLuminancia(r, g, b) {
 
     return 0.2126 * rNorm + 0.7152 * gNorm + 0.0722 * bNorm;
 };
-
-//=< mostrat toast >==
-let idTemporizadorToast = null;
 
 function mostrarToast(mensaje) {
     toast.textContent = mensaje;
@@ -173,7 +167,6 @@ function mostrarToast(mensaje) {
     }, 2500);
 };
 
-//=< copiar hex al portapapeles >==
 function copiarAlPortapapeles(hex) {
     navigator.clipboard.writeText(hex)
         .then(() => {
@@ -184,18 +177,15 @@ function copiarAlPortapapeles(hex) {
         });
 };
 
-//=< leer colores guardados en localStorage >==
 function obtenerColoresGuradados() {
     const datosGuardados = localStorage.getItem(CLAVE_STORAGE);
     return datosGuardados ? JSON.parse(datosGuardados) : [];
 };
 
-//=< escribir colores guardados en localStorage >==
 function guardarEnStorage(coloresGuardados) {
     localStorage.setItem(CLAVE_STORAGE, JSON.stringify(coloresGuardados));
 };
 
-//=< guardar los colores bloqueados de la paleta actual >==
 function guardarColoresBloqueados() {
     const bloqueadosActuales = paletaActual.filter((color) => color.bloqueado);
 
@@ -223,7 +213,6 @@ function guardarColoresBloqueados() {
     mostrarToast('Colores bloqueados guardados');
 };
 
-//=< pintar colores guardados en DOM >==
 function renderizaColoresGuardados() {
     const coloresGuardados = obtenerColoresGuradados();
     listaColoresGuardados.innerHTML = '';
@@ -247,7 +236,6 @@ function renderizaColoresGuardados() {
     });
 };
 
-//=< eliminar color guardado específico >==
 function eliminarColorGuardado(hex) {
     const coloresGuardados = obtenerColoresGuradados();
     const coloresFiltrados = coloresGuardados.filter((color) => color.hex !== hex);
@@ -255,7 +243,3 @@ function eliminarColorGuardado(hex) {
     guardarEnStorage(coloresFiltrados);
     renderizaColoresGuardados();
 };
-
-botonGuardarBloqueados.addEventListener('click', guardarColoresBloqueados);
-renderizaColoresGuardados();
-//=> cuando carga página renderiza lo guardado antes
