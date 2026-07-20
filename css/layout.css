@@ -3,7 +3,7 @@
 /*==> header <==*/
 header {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 0.5fr 2fr 0.5fr;
     justify-content: center;
     text-align: center;
     gap: var(--espacio-lg) var(--espacio-md);
@@ -167,10 +167,6 @@ section {
 
 /*==> footer <==*/
 footer {
-    display: grid;
-    grid-template-columns: 0.5fr 2fr 0.5fr;
-    justify-content: center;
-    text-align: center;
     gap: var(--espacio-lg) var(--espacio-md);
     max-width: 1200px;
     margin: 0 auto;
