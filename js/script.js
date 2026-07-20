@@ -8,8 +8,6 @@ const CLAVE_STORAGE = 'coloresGuardados';
 const botonGuardarBloqueados = document.getElementById('guardar-bloqueados');
 const listaColoresGuardados = document.getElementById('lista-colores-guardados');
 
-/* console.log(generarBoton, selectorTamano, contenedorPaleta, toast), paletaActual; */
-
 //=< evento click >==
 generarBoton.addEventListener('click',  () => {
     const tamano = parseInt(selectorTamano.value, 10);
@@ -260,4 +258,4 @@ function eliminarColorGuardado(hex) {
 
 botonGuardarBloqueados.addEventListener('click', guardarColoresBloqueados);
 renderizaColoresGuardados();
-//=> cuando carga p+agina renderiza lo guardado antes
+//=> cuando carga página renderiza lo guardado antes
