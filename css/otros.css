@@ -73,3 +73,41 @@ select:focus-visible {
         transform: translateY(0) scale(1);
     }
 }
+
+/*====================================
+  5. UTILIDAD: ocultar elementos
+====================================*/
+.oculto {
+    display: none;
+}
+
+/*====================================
+  6. FORMULARIO NOMBRAR Y GUARDAR PALETA
+====================================*/
+.form-nombre-paleta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-xs);
+    margin-top: var(--espacio-sm);
+    padding: var(--espacio-sm);
+    border-radius: var(--borde-radio-md);
+    background-color: var(--color-fondo-secundario);
+}
+
+.form-nombre-paleta label {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.form-nombre-paleta input {
+    padding: var(--espacio-xs) var(--espacio-sm);
+    border: 2px solid var(--color-fondo);
+    border-radius: var(--borde-radio-sm);
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.form-nombre-paleta input:focus-visible {
+    outline: none;
+    border-color: var(--color-primario);
+}

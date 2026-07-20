@@ -76,14 +76,14 @@
             <!-- ==<panel colores guardados>== -->
             <div class="colores-guardados-panel">
                 <h3>Colores guardados</h3>
-                <div>
-                    <button class="boton-secundario" id="guardar-paleta" type="button">
-                        Guardar paleta
-                    </button>
-                    <button class="boton-secundario" id="cargar-paleta" type="button">
-                        Cargar paleta guardada
-                    </button>
+
+                <!-- ==<formulario para nombrar y guardar la paleta>== -->
+                <div class="form-nombre-paleta">
+                    <label for="input-nombre-paleta">Nombre de la paleta</label>
+                    <input type="text" id="input-nombre-paleta" placeholder="Ej: Atardecer" />
+                    <button type="button" id="guardar-paleta" class="boton-secundario">Guardar paleta</button>
                 </div>
+
                 <div class="lista-colores-guardados" id="lista-colores-guardados" aria-live="polite">
                     <!--js pinta colores guardados-->
                 </div>

@@ -1,44 +1,79 @@
 //=< lectura/escritura de localStorage y lista visual de paleta guardada >==
 
-const CLAVE_STORAGE = 'coloresGuardados';
+const CLAVE_STORAGE = 'paletasGuardadas';
 const listaColoresGuardados = document.getElementById('lista-colores-guardados');
 
-export function obtenerColoresGuardados() {
+export function obtenerPaletasGuardadas() {
     const datosGuardados = localStorage.getItem(CLAVE_STORAGE);
     return datosGuardados ? JSON.parse(datosGuardados) : [];
 };
 
-export function guardarEnStorage(coloresGuardados) {
-    localStorage.setItem(CLAVE_STORAGE, JSON.stringify(coloresGuardados));
+export function guardarEnStorage(paletas) {
+    localStorage.setItem(CLAVE_STORAGE, JSON.stringify(paletas));
 };
 
-export function renderizaColoresGuardados() {
-    const coloresGuardados = obtenerColoresGuardados();
+//=> agrega paleta nueva a la colección
+export function guardarNuevaPaleta(colores, nombre) {
+    const paletas = obtenerPaletasGuardadas();
+
+    const paletaNueva = {
+        id: Date.now().toString(),
+        nombre,
+        colores,
+    };
+
+    paletas.push(paletaNueva);
+    guardarEnStorage(paletas);
+};
+
+//=> elimina una paleta
+export function eliminarPaletaGuardada(id) {
+    const paletas = obtenerPaletasGuardadas();
+    const paletasFiiltradas = paletas.filter((paleta) => paleta.id !== id);
+
+    guardarEnStorage(paletasFiiltradas);
+};
+
+//=> carga paleta guardada
+export function renderizaPaletasGuardadas(onCargar) {
+    const paletas = obtenerPaletasGuardadas();
     listaColoresGuardados.innerHTML = '';
 
-    coloresGuardados.forEach((color) => {
+    paletas.forEach((paleta) => {
         const item = document.createElement('div');
-        item.classList.add('color-guardado');
-        item.style.background = color.hsl;
-        item.title = color.hex.toUpperCase();
+        item.classList.add('paleta-guardada-item');
+
+        //--> mini franjas de color, una por cada color de esa paleta
+        const swatches = document.createElement('div');
+        swatches.classList.add('paleta-guardada-swatches');
+
+        paleta.colores.forEach((color) => {
+            const miniSwatch = document.createElement('span');
+            miniSwatch.classList.add('mini-swatch');
+            miniSwatch.style.background = color.hsl;
+            swatches.appendChild(miniSwatch);
+        });
+
+        const botonCargar = document.createElement('button');
+        botonCargar.type = 'button';
+        botonCargar.classList.add('boton-cargar-guardada');
+        botonCargar.textContent = paleta.nombre;
+        botonCargar.setAttribute('aria-label', `Cargar paleta guardada de ${paleta.colores.length} colores`);
+        botonCargar.addEventListener('click', () => onCargar(paleta.colores));
 
         const botonEliminar = document.createElement('button');
         botonEliminar.type = 'button';
         botonEliminar.classList.add('boton-eliminar-guardado');
         botonEliminar.textContent = '×';
+        botonEliminar.setAttribute('aria-label', 'Eliminar esta paleta guardada');
+        botonEliminar.addEventListener('click', () => {
+            eliminarPaletaGuardada(paleta.id);
+            renderizaPaletasGuardadas(onCargar);
+        });
 
-        botonEliminar.setAttribute('aria-label', `Eliminar color guardado ${color.hex.toUpperCase()}`);
-        botonEliminar.addEventListener('click', () => eliminarColorGuardado(color.hex));
-
+        item.appendChild(swatches);
+        item.appendChild(botonCargar);
         item.appendChild(botonEliminar);
         listaColoresGuardados.appendChild(item);
     });
-};
-
-export function eliminarColorGuardado(hex) {
-    const coloresGuardados = obtenerColoresGuardados();
-    const coloresFiltrados = coloresGuardados.filter((color) => color.hex !== hex);
-
-    guardarEnStorage(coloresFiltrados);
-    renderizaColoresGuardados();
 };

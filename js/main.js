@@ -1,14 +1,14 @@
 //=< punto de entrada: conecta el HTML con la lógica de los demás módulos >==
 
 import { crearNuevaPaleta, establecerPaleta, obtenerPaletaActual, actualizarFormatoMostrado } from './paleta.js';
-import { obtenerColoresGuardados, guardarEnStorage, renderizaColoresGuardados } from './almacenamiento.js';
+import { guardarNuevaPaleta, renderizaPaletasGuardadas } from './almacenamiento.js';
 import { mostrarToast } from './toast.js';
 
 const generarBoton = document.getElementById('generar-paleta');
 const selectorTamano = document.getElementById('tamano-paleta');
 const selectorFormato = document.getElementById('formato-color');
 const botonGuardarPaleta = document.getElementById('guardar-paleta');
-const botonCargarPaleta = document.getElementById('cargar-paleta');
+const inputNombrePaleta = document.getElementById('input-nombre-paleta');
 
 generarBoton.addEventListener('click', () => {
     const tamano = parseInt(selectorTamano.value, 10);
@@ -20,6 +20,7 @@ selectorFormato.addEventListener('change', () => {
     actualizarFormatoMostrado(selectorFormato.value);
 });
 
+//=< guarda la paleta actual con el nombre escrito en el input >==
 botonGuardarPaleta.addEventListener('click', () => {
     const paletaActual = obtenerPaletaActual();
 
@@ -28,22 +29,32 @@ botonGuardarPaleta.addEventListener('click', () => {
         return;
     };
 
-    guardarEnStorage(paletaActual);
-    renderizaColoresGuardados();
-    mostrarToast('Paleta guardada');
-});
+    const nombre = inputNombrePaleta.value.trim();
 
-botonCargarPaleta.addEventListener('click', () => {
-    const paletaGuardada = obtenerColoresGuardados();
-
-    if (paletaGuardada.length === 0) {
-        mostrarToast('No hay ninguna paleta guardada');
+    if (!nombre) {
+        mostrarToast('Ingresá un nombre para la paleta');
         return;
     };
 
-    establecerPaleta(paletaGuardada);
-    selectorTamano.value = paletaGuardada.length;
-    mostrarToast('Paleta cargada');
+    guardarNuevaPaleta(paletaActual, nombre);
+    renderizaPaletasGuardadas(cargarPaleta);
+    mostrarToast('Paleta guardada');
+    inputNombrePaleta.value = '';
 });
 
-renderizaColoresGuardados();
+//=< permitir guardar con Enter en vez de tener que tocar el botón >==
+inputNombrePaleta.addEventListener('keydown', (evento) => {
+    if (evento.key === 'Enter') {
+        evento.preventDefault();
+        botonGuardarPaleta.click();
+    };
+});
+
+//=< qué hacer cuando se toca "Cargar" en una paleta guardada específica >==
+function cargarPaleta(colores) {
+    establecerPaleta(colores);
+    selectorTamano.value = colores.length;
+    mostrarToast('Paleta cargada');
+};
+
+renderizaPaletasGuardadas(cargarPaleta);

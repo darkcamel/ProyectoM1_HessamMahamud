@@ -83,31 +83,66 @@ section {
 
 .lista-colores-guardados {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: var(--espacio-sm);
     margin-top: var(--espacio-sm);
-    min-height: 2.5rem;
 }
 
-.color-guardado {
-    position: relative;
-    width: 2.5rem;
-    height: 2.5rem;
+/*--> una fila por cada paleta guardada */
+.paleta-guardada-item {
+    display: flex;
+    align-items: center;
+    gap: var(--espacio-sm);
+    padding: var(--espacio-xs) var(--espacio-sm);
     border-radius: var(--borde-radio-sm);
-    box-shadow: var(--sombra-suave);
+    border: 1px solid var(--color-fondo-secundario);
+}
+
+/*--> franja de mini-colores dentro de cada fila */
+.paleta-guardada-swatches {
+    display: flex;
+    flex: 1;
+    height: 2rem;
+    border-radius: var(--borde-radio-sm);
+    overflow: hidden;
+}
+
+.mini-swatch {
+    flex: 1;
+    display: block;
+}
+
+.boton-cargar-guardada {
+    flex-shrink: 0;
+    max-width: 8rem;                 
+    overflow: hidden;                 
+    text-overflow: ellipsis;          
+    white-space: nowrap;              
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: var(--espacio-xs) var(--espacio-sm);
+    border-radius: var(--borde-radio-sm);
+    border: 1px solid var(--color-primario);
+    background: none;
+    color: var(--color-primario);
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.boton-cargar-guardada:hover {
+    background-color: var(--color-primario);
+    color: var(--color-texto-claro);
 }
 
 .boton-eliminar-guardado {
-    position: absolute;
-    top: -6px;
-    right: -6px;
-    width: 18px;
-    height: 18px;
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     border: none;
     background-color: var(--color-fondo-oscuro);
     color: var(--color-texto-claro);
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     line-height: 1;
     cursor: pointer;
     transition: transform 0.15s ease;
