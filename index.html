@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Paleta de Color</title>
     <link rel="stylesheet" href="./css/styles.css" />
-    <script src="./js/script.js" defer></script>
+    <script type="module" src="./js/main.js"></script>
 </head>
 
 <body>
@@ -76,9 +76,14 @@
             <!-- ==<panel colores guardados>== -->
             <div class="colores-guardados-panel">
                 <h3>Colores guardados</h3>
-                <button class="boton-secundario" id="guardar-bloqueados" type="button">
-                    Guardar colores bloqueados
-                </button>
+                <div>
+                    <button class="boton-secundario" id="guardar-paleta" type="button">
+                        Guardar paleta
+                    </button>
+                    <button class="boton-secundario" id="cargar-paleta" type="button">
+                        Cargar paleta guardada
+                    </button>
+                </div>
                 <div class="lista-colores-guardados" id="lista-colores-guardados" aria-live="polite">
                     <!--js pinta colores guardados-->
                 </div>
