@@ -1,11 +1,12 @@
 /*==<layout>==*/
 
-/*==> header <==*/
+/*====================================
+  1. HEADER (estructura general)
+====================================*/
 header {
     display: grid;
     grid-template-columns: 0.5fr 2fr 0.5fr;
     justify-content: center;
-    text-align: center;
     gap: var(--espacio-lg) var(--espacio-md);
     max-width: 1200px;
     margin: 0 auto;
@@ -20,57 +21,59 @@ header {
     background-color: var(--color-fondo-secundario);
 }
 
-/*--> título principal */
 .header h1 {
     font-size: 2.5rem;
     color: var(--color-titulo);
     margin-bottom: var(--espacio-xs);
 }
 
-/*--> subtítulo */
 .header p {
     font-size: 1.25rem;
     color: var(--color-subtitulo);
 }
 
-/*==> main layout <==*/
-.app-layout {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    /* izquierda más pequeña */
-    gap: var(--espacio-lg) var(--espacio-md);
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: var(--espacio-lg) var(--espacio-md);
-}
-
+/*====================================
+  2. SECTION genérico (caja base reutilizada)
+====================================*/
 section {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
     gap: var(--espacio-xs);
     padding: var(--espacio-lg) var(--espacio-md);
-    justify-content: center;
     background: var(--color-fondo);
     border-radius: var(--borde-radio-lg);
     border: 1px solid var(--color-fondo-secundario);
     box-shadow: var(--sombra-suave);
 }
 
-/*==> panel de controles (izquierda) <==*/
+/*====================================
+  3. MAIN LAYOUT (grid dos columnas)
+====================================*/
+.app-layout {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--espacio-lg) var(--espacio-md);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--espacio-lg) var(--espacio-md);
+}
+
+/*====================================
+  4. PANEL DE CONTROL (izquierda)
+====================================*/
 .panel-control {
     display: flex;
     flex-direction: column;
     gap: var(--espacio-md);
 }
 
-/*--> selectores tamaño paleta y formato */
 .grupo-controles {
     display: flex;
     flex-direction: column;
 }
 
-/*==> panel guardado de colores (izquierda) <==*/
 .colores-guardados-panel {
     border-top: 1px solid var(--color-fondo-secundario);
     padding-top: var(--espacio-md);
@@ -106,23 +109,27 @@ section {
     font-size: 0.75rem;
     line-height: 1;
     cursor: pointer;
+    transition: transform 0.15s ease;
 }
 
-/*==> panel de paleta (derecha) <==*/
+.boton-eliminar-guardado:active {
+    transform: scale(0.92);
+}
+
+/*====================================
+  5. PANEL DE PALETA (derecha)
+====================================*/
 .panel-paleta {
     padding: var(--espacio-md);
 }
 
-/*--> grid de paleta */
 .cuadricula-paleta {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    /* 3 columnas */
     gap: var(--espacio-md);
     justify-items: center;
 }
 
-/*--> color individual (la que crea JS) */
 .color-paleta {
     display: flex;
     flex-direction: column;
@@ -131,116 +138,7 @@ section {
     border-radius: var(--borde-radio-md);
     box-shadow: var(--sombra-suave);
     background-color: var(--color-fondo-secundario);
-}
-
-/*--> clickeabilidad paleta mouse */
-.color-paleta {
     cursor: pointer;
-}
-
-.color-paleta:focus-visible {
-    outline: 3px solid var(--color-primario);
-    outline-offset: 2px;
-}
-
-/*==> botón de bloqueo <==*/
-.boton-bloqueo {
-    background: none;
-    border: none;
-    font-size: 1.25rem;
-    cursor: pointer;
-    padding: var(--espacio-xs);
-    line-height: 1;
-}
-
-.boton-bloqueo:focus-visible {
-    outline: 3px solid var(--color-primario);
-    outline-offset: 2px;
-    border-radius: var(--borde-radio-sm);
-}
-
-/*==> tarjeta bloqueada <==*/
-.color-paleta.bloqueado {
-    outline: 3px solid var(--color-primario-oscuro);
-    outline-offset: -3px;
-}
-
-/*==> footer <==*/
-footer {
-    gap: var(--espacio-lg) var(--espacio-md);
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: var(--espacio-lg) var(--espacio-md);
-}
-
-/*==> toast <==*/
-.toast {
-    position: fixed;
-    left: 50%;
-    bottom: var(--espacio-lg);
-    transform: translateX(-50%) translateY(150%);
-
-    background-color: var(--color-fondo-oscuro);
-    color: var(--color-texto-claro);
-    padding: var(--espacio-sm) var(--espacio-md);
-    border-radius: var(--borde-radio-md);
-    box-shadow: var(--sombra-suave);
-
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease, transform     0.3s ease;
-}
-
-.toast.visible {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-}
-
-/*==> accesibilidad <==*/
-/*--> foco visible */
-button:focus-visible,
-select:focus-visible {
-    outline: 3px solid var(--color-primario);
-    outline-offset: 2px;
-    border-radius: var(--borde-radio-sm);
-}
-
-/*--> respetar preferencia menos movimiento */
-@media (prefers-reduced-motion: reduce) {
-    .color-paleta,
-    .toast,
-    .boton,
-    .boton-bloqueo,
-    .boton-secundario,
-    .boton-eliminar-guardado {
-        animation: none;
-        transition: none;
-    }
-}
-
-/*==> responsive <==*/
-@media (max-width: 768px) {
-    .app-layout {
-        grid-template-columns: 1fr;
-    }
-
-    .cuadricula-paleta {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/*==> animación entrada de tarjetas <==*/
-@keyframes aparecerTarjeta {
-    from {
-        opacity: 0;
-        transform: translateY(12px) scale(0.95);
-    } to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-.color-paleta {
     animation: aparecerTarjeta 0.4s ease backwards;
 }
 
@@ -253,9 +151,23 @@ select:focus-visible {
 .color-paleta:nth-child(8) { animation-delay: 0.28s; }
 .color-paleta:nth-child(9) { animation-delay: 0.32s; }
 
-/*==> feedback botones sutil <==*/
-.boton-bloqueo,
-.boton-eliminar-guardado {
+.color-paleta:focus-visible {
+    outline: 3px solid var(--color-primario);
+    outline-offset: 2px;
+}
+
+.color-paleta.bloqueado {
+    outline: 3px solid var(--color-primario-oscuro);
+    outline-offset: -3px;
+}
+
+.boton-bloqueo {
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: var(--espacio-xs);
+    line-height: 1;
     transition: transform 0.15s ease;
 }
 
@@ -263,7 +175,22 @@ select:focus-visible {
     transform: translateY(-2px);
 }
 
-.boton-bloqueo:active,
-.boton-eliminar-guardado:active {
+.boton-bloqueo:active {
     transform: scale(0.92);
+}
+
+.boton-bloqueo:focus-visible {
+    outline: 3px solid var(--color-primario);
+    outline-offset: 2px;
+    border-radius: var(--borde-radio-sm);
+}
+
+/*====================================
+  6. FOOTER
+====================================*/
+footer {
+    gap: var(--espacio-lg) var(--espacio-md);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--espacio-lg) var(--espacio-md);
 }

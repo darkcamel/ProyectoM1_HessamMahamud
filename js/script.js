@@ -8,6 +8,7 @@ const CLAVE_STORAGE = 'coloresGuardados';
 const botonGuardarBloqueados = document.getElementById('guardar-bloqueados');
 const listaColoresGuardados = document.getElementById('lista-colores-guardados');
 let idTemporizadorToast = null;
+const selectorFormato = document.getElementById('formato-color');
 
 //=< eventos >==
 generarBoton.addEventListener('click',  () => {
@@ -18,6 +19,15 @@ generarBoton.addEventListener('click',  () => {
 
 botonGuardarBloqueados.addEventListener('click', guardarColoresBloqueados);
 renderizaColoresGuardados();
+
+selectorFormato.addEventListener('change', () => {
+    const formato = selectorFormato.value;
+    const spansDeColor = contenedorPaleta.querySelectorAll('.color-paleta span');
+
+    spansDeColor.forEach((span, indice) => {
+        span.textContent = formatoColor(paletaActual[indice], formato);
+    });
+});
 
 //=< funciones >==
 function generarColorAleatorio() {
@@ -32,9 +42,10 @@ function generarColorAleatorio() {
 
     const [r, g, b] = hslARgb(h, s, l);
     const hex = rgbAHex(r, g, b);
+    const rgb = `rgb(${r}, ${g}, ${b})`;
     const luminancia = calcularLuminancia(r, g, b);
     const colorTexto = luminancia > 0.5 ? 'var(--color-texto)' : 'var(--color-texto-claro)';
-    return { hsl, hex, colorTexto };
+    return { hsl, hex, rgb, colorTexto };
 };
 
 function crearNuevaPaleta(tamano) {
@@ -69,7 +80,7 @@ function renderizaPaleta() {
         }
 
         const textoHex = document.createElement('span');
-        textoHex.textContent = color.hex.toUpperCase();
+        textoHex.textContent = formatoColor(color, selectorFormato.value); // modificado para cambiar entre hex, hsl y rgb.
         textoHex.style.color = color.colorTexto;
 
         const botonBloqueo = document.createElement('button');
@@ -243,3 +254,12 @@ function eliminarColorGuardado(hex) {
     guardarEnStorage(coloresFiltrados);
     renderizaColoresGuardados();
 };
+
+function formatoColor(color, formato) {
+    switch (formato) {
+        case 'RGB':
+            return color.rgb;
+        case 'HEX':
+            return color.hex.toUpperCase();
+    };
+}; // función nueva

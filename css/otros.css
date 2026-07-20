@@ -1,0 +1,75 @@
+/*==<otros>==*/
+
+/*====================================
+  1. TOAST (feedback flotante)
+====================================*/
+.toast {
+    position: fixed;
+    left: 50%;
+    bottom: var(--espacio-lg);
+    transform: translateX(-50%) translateY(150%);
+
+    background-color: var(--color-fondo-oscuro);
+    color: var(--color-texto-claro);
+    padding: var(--espacio-sm) var(--espacio-md);
+    border-radius: var(--borde-radio-md);
+    box-shadow: var(--sombra-suave);
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.toast.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/*====================================
+  2. ACCESIBILIDAD GLOBAL
+====================================*/
+button:focus-visible,
+select:focus-visible {
+    outline: 3px solid var(--color-primario);
+    outline-offset: 2px;
+    border-radius: var(--borde-radio-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .color-paleta,
+    .toast,
+    .boton,
+    .boton-bloqueo,
+    .boton-secundario,
+    .boton-eliminar-guardado {
+        animation: none;
+        transition: none;
+    }
+}
+
+/*====================================
+  3. RESPONSIVE
+====================================*/
+@media (max-width: 768px) {
+    .app-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .cuadricula-paleta {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/*====================================
+  4. ANIMACIONES (keyframes)
+====================================*/
+@keyframes aparecerTarjeta {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
