@@ -4,9 +4,8 @@
   1. HEADER (estructura general)
 ====================================*/
 header {
-    display: grid;
-    grid-template-columns: 2.5fr 0.5fr;
     justify-content: center;
+    text-align: center;
     gap: var(--espacio-lg) var(--espacio-md);
     max-width: 1200px;
     margin: 0 auto;
@@ -275,6 +274,8 @@ select:focus-visible {
   6. FOOTER
 ====================================*/
 footer {
+    display: grid;
+    grid-template-columns: 2.5fr 0.5fr;
     gap: var(--espacio-lg) var(--espacio-md);
     max-width: 1200px;
     margin: 0 auto;
