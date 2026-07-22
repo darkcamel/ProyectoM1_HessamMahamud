@@ -112,7 +112,7 @@ section {
     display: block;
 }
 
-.boton-cargar-guardada {
+.boton-secundario {
     flex-shrink: 0;
     max-width: 8rem;                 
     overflow: hidden;                 
@@ -129,7 +129,7 @@ section {
     transition: background-color 0.15s ease, color 0.15s ease;
 }
 
-.boton-cargar-guardada:hover {
+.boton-secundario:hover {
     background-color: var(--color-primario);
     color: var(--color-texto-claro);
 }
