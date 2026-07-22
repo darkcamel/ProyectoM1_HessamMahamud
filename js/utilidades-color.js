@@ -59,6 +59,8 @@ export function generarColorAleatorio() {
 
 export function formatoColor(color, formato) {
     switch (formato) {
+        case 'HSL':
+            return color.hsl;
         case 'RGB':
             return color.rgb;
         case 'HEX':
