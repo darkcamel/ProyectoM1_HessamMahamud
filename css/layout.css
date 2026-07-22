@@ -5,7 +5,7 @@
 ====================================*/
 header {
     display: grid;
-    grid-template-columns: 0.5fr 2fr 0.5fr;
+    grid-template-columns: 2.5fr 0.5fr;
     justify-content: center;
     gap: var(--espacio-lg) var(--espacio-md);
     max-width: 1200px;
