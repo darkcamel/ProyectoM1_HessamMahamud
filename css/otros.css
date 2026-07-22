@@ -61,6 +61,7 @@ select:focus-visible {
 
     .cuadricula-paleta {
         grid-template-columns: 1fr;
+    }
 }
 
 /*====================================
