@@ -112,28 +112,6 @@ section {
     display: block;
 }
 
-.boton-secundario {
-    flex-shrink: 0;
-    max-width: 8rem;                 
-    overflow: hidden;                 
-    text-overflow: ellipsis;          
-    white-space: nowrap;              
-    font-size: 0.8rem;
-    font-weight: 600;
-    padding: var(--espacio-xs) var(--espacio-sm);
-    border-radius: var(--borde-radio-sm);
-    border: 1px solid var(--color-primario);
-    background: none;
-    color: var(--color-primario);
-    cursor: pointer;
-    transition: background-color 0.15s ease, color 0.15s ease;
-}
-
-.boton-secundario:hover {
-    background-color: var(--color-primario);
-    color: var(--color-texto-claro);
-}
-
 .boton-eliminar-guardado {
     flex-shrink: 0;
     width: 22px;
