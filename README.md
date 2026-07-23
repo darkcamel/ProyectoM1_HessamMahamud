@@ -1,6 +1,6 @@
 # 🎨 Generador de Paleta de Colores
 
-Aplicación web estática e interactiva que genera paletas de colores aleatorias, con opciones de personalización y persistencia local. Proyecto integrador del Módulo 1 — Full Stack (Henry).
+Aplicación web estática e interactiva que genera paletas de colores aleatorias, con opciones de personalización y persistencia local.
 
 **Demo en vivo:** _[Paleta de color](https://darkcamel.github.io/ProyectoM1_HessamMahamud/)_
 
@@ -17,20 +17,15 @@ Aplicación web estática e interactiva que genera paletas de colores aleatorias
 
 ## Funcionalidades
 
-### Obligatorias (MVP)
-
 - Generación de paletas aleatorias de 6, 8 o 9 colores mediante un botón principal.
-- Cada color se genera en formato **HSL** y se muestra su equivalente en **HEX**.
+- Cada color se genera en formato **HSL** y se muestra su equivalente en **HEX**, **RGB** y **HSL**.
 - Render dinámico según el tamaño de paleta elegido.
 - Microfeedback visible (toast) al generar una paleta y al copiar un color.
 - HTML semántico (`header`, `main`, `section`, `footer`).
 - Accesibilidad básica: labels asociados a sus controles, contraste de texto calculado dinámicamente según la luminancia de cada color de fondo, y foco visible por teclado.
 - Diseño responsive (desktop, tablet y mobile).
-
-### Extra credit
-
 - 🔒 **Bloqueo de colores**: cada color de la paleta se puede bloquear individualmente; al generar una paleta nueva, los colores bloqueados se mantienen y solo se randomizan los demás.
-- 💾 **Guardado en `localStorage`**: los colores bloqueados se pueden guardar en una colección persistente, visible en el panel de configuración, que sobrevive a recargar o cerrar el navegador.
+- 💾 **Guardado en `localStorage`**: las paletas de colores se pueden guardar en una colección persistente, visible en el panel de configuración, que sobrevive a recargar o cerrar el navegador. Se pueden cargar las paletas guardadas.
 - 📋 **Copiar al portapapeles**: un clic sobre cualquier color de la paleta copia su código HEX.
 - ✨ **Animaciones sutiles**: entrada en cascada de las tarjetas de color, microinteracciones en botones (hover/active), y respeto de la preferencia del sistema operativo `prefers-reduced-motion` para quienes prefieren menos movimiento en pantalla.
 
@@ -45,26 +40,43 @@ Aplicación web estática e interactiva que genera paletas de colores aleatorias
 ## Estructura del proyecto
 
 ```
+tree
+├── assets
+│   └── giphy.mp4
+├── css
+│   ├── base.css
+│   ├── layout.css
+│   ├── main-button.css
+│   ├── otros.css
+│   ├── reset.css
+│   ├── second-button.css
+│   ├── styles.css
+│   └── variables.css
+├── docs
 ├── index.html
-├── css/
-│   ├── styles.css              # entry point, importa el resto
-│   ├── reset.css                # normaliza estilos por defecto del navegador
-│   ├── variables.css            # colores, espaciados, radios, sombras
-│   ├── base.css                  # tipografía y estilos base de texto
-│   └── layout.css                # layout, componentes, responsive, animaciones
-├── js/
-│   └── script.js                 # toda la lógica de la aplicación
+├── js
+│   ├── almacenamiento.js
+│   ├── main.js
+│   ├── paleta.js
+│   ├── toast.js
+│   └── utilidades-color.js
 └── README.md
+
+5 directories, 16 files
 ```
 
 ## Cómo usar la aplicación
 
+![Gif](gif-uso.gif)
+
+![Gif](gif-uso2.gif)
 1. Elija el tamaño de paleta deseado (6, 8 o 9 colores) en el selector.
-2. Presione **"Generar paleta nueva"**.
-3. Haga clic sobre cualquier color para copiar su código HEX al portapapeles.
-4. Presione el ícono de candado (🔓/🔒) sobre un color para bloquearlo — ese color se va a mantener en las próximas paletas que genere.
-5. Presione **"Guardar colores bloqueados"** para agregarlos a su colección persistente en el panel izquierdo. Esa colección se mantiene aunque recargue o cierre el navegador.
-6. Para eliminar un color guardado, presione la "×" sobre su miniatura.
+2. Seleccione el tipo de formato, **HEX**, **RGB** o **HSL**.
+3. Presione **"Generar paleta nueva"**.
+4. Haga clic sobre cualquier color para copiar su código HEX al portapapeles.
+5. Presione el ícono de candado (🔓/🔒) sobre un color para bloquearlo — ese color se va a mantener en las próximas paletas que genere.
+6. Presione **"Guardar paleta"** para guarda la paleta actual en el panel izquierdo, debe ponerle un nombre para poder guardar. Esa colección se mantiene aunque recargue o cierre el navegador y puede cargar las paletas cuando quiera haciendo click sobre el nombre.
+7. Para eliminar una paleta guardada, presione la "×" al lado derecho del nombre.
 
 Toda la aplicación es navegable por teclado (tecla `Tab` para moverse entre controles, `Enter`/`Espacio` para activar botones y tarjetas de color).
 
@@ -107,8 +119,11 @@ Durante el desarrollo utilicé **Claude (Anthropic)** como apoyo para entender c
 - **Microfeedback (toast)**: pedí ayuda para estructurar un mensaje temporal accesible (`aria-live`), incluyendo el manejo de `setTimeout`/`clearTimeout` para evitar solapamientos si se generan paletas rápido.
 - **Copiar al portapapeles**: consulté el uso de la API `navigator.clipboard` y el manejo de promesas (`.then`/`.catch`), además de los requisitos de accesibilidad para que la copia funcione también por teclado.
 - **Bloqueo de colores y estado de la aplicación**: discutí cómo pasar de "generar y descartar" a mantener un estado (`paletaActual`) que permitiera preservar colores bloqueados entre generaciones.
-- **Persistencia con `localStorage`**: pedí explicación de por qué localStorage solo maneja texto y cómo `JSON.stringify`/`JSON.parse` resuelven eso, aplicado a guardar y recuperar colores bloqueados.
-- **Animaciones y `prefers-reduced-motion`**: consulté cómo agregar animaciones de entrada sutiles sin perjudicar a usuarios con sensibilidad al movimiento.
+- **Persistencia con `localStorage`**: pedí explicación de por qué localStorage solo maneja texto y cómo `JSON.stringify`/`JSON.parse` resuelven eso, aplicado a guardar y recuperar paleta de colores.
 - **Organización y priorización del trabajo**: usé la IA también para planificar los días de trabajo restantes hasta la entrega, priorizando el MVP obligatorio antes que los extras, siguiendo la guía del proyecto.
 
 En todos los casos, revisé, probé y en varios casos ajusté el código sugerido antes de incorporarlo (por ejemplo, corregí un bug donde el color de texto calculado no se estaba aplicando al DOM). El código final fue escrito, probado y corregido por mí en cada paso.
+
+Para más información con respecto al uso de IA dirigirse a: [Documentación IA](/docs/documentacion-IA.md).
+
+Cabe aclarar que todos los documentos y textos pegados en Claude(Antrhopic) no quedan registrados dentro del prompt sino como archivos aparte: [Imagen claude](./assets/Screenshot_2026-07-23_00-02-56.png).
