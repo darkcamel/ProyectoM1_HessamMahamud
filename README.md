@@ -71,9 +71,9 @@ tree
 
 ## Cómo usar la aplicación
 
-![Gif](gif-uso.gif)
+![Gif](./assets/gif-uso.gif)
 
-![Gif](gif-uso2.gif)
+![Gif](./assets/gif-uso2.gif)
 
 1. Elija el tamaño de paleta deseado (6, 8 o 9 colores) en el selector.
 2. Seleccione el tipo de formato, **HEX**, **RGB** o **HSL**.
