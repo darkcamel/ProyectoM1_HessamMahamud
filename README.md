@@ -41,8 +41,11 @@ Aplicación web estática e interactiva que genera paletas de colores aleatorias
 
 ```
 tree
+
 ├── assets
-│   └── giphy.mp4
+│   ├── gif-uso2.gif
+│   ├── gif-uso.gif
+│   └── Screenshot_2026-07-23_00-02-56.png
 ├── css
 │   ├── base.css
 │   ├── layout.css
@@ -53,6 +56,7 @@ tree
 │   ├── styles.css
 │   └── variables.css
 ├── docs
+│   └── documentacion-IA.md
 ├── index.html
 ├── js
 │   ├── almacenamiento.js
@@ -62,7 +66,7 @@ tree
 │   └── utilidades-color.js
 └── README.md
 
-5 directories, 16 files
+5 directories, 19 files
 ```
 
 ## Cómo usar la aplicación
