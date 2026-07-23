@@ -565,7 +565,7 @@ Probalo y contame: ¿ves el mensaje deslizarse desde abajo cuando generás una p
 
 ### 4.1 Prompt
 
-bien como el proyecto está luciendo ya bien, te voy a enviar los archivos con todo lo que vamos hasta ahora, la idea es según la consigna que te voy a pegar empezar con los exptras, copiar al corta papeles. Necesito nuevamente que explicque bien todo soy principiante.
+bien como el proyecto está luciendo ya bien, te voy a enviar los archivos con todo lo que vamos hasta ahora, la idea es según la consigna que te voy a pegar empezar con los extras, copiar al corta papeles. Necesito nuevamente que expliques bien todo soy principiante.
 
 ### 4.2 Respone
 
