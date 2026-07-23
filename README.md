@@ -129,6 +129,6 @@ Durante el desarrollo utilicé **Claude (Anthropic)** como apoyo para entender c
 
 En todos los casos, revisé, probé y en varios casos ajusté el código sugerido antes de incorporarlo (por ejemplo, corregí un bug donde el color de texto calculado no se estaba aplicando al DOM). El código final fue escrito, probado y corregido por mí en cada paso.
 
-Para más información con respecto al uso de IA dirigirse a: [Documentación IA](/docs/documentacion-IA.md).
+Para más información con respecto al uso de IA dirigirse a: [Documentación IA](./docs/documentacion-IA.md).
 
 Cabe aclarar que todos los documentos y textos pegados en Claude(Antrhopic) no quedan registrados dentro del prompt sino como archivos aparte: [Imagen claude](./assets/Screenshot_2026-07-23_00-02-56.png).
