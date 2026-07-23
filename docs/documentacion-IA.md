@@ -1108,7 +1108,7 @@ Contame cómo te fue, y si querés, el siguiente paso natural sería hacer que *
 
 ### 7.1 Prompt
 
-La entrega es el día 21 martes. Igual tengo pensado meterle unas 4 horas, cómo mínimo por día. El sábado y domingo mínimo trabajaría unas 5 horas en proyecto.
+tengo que hacer un proyecto, te copio la consigna para que veas que es lo que hay que hacer y como organizarlo. La entrega es el día jueves 23 de este mes pero quiero tener el proyecto listo el martes 21. Igual tengo pensado meterle unas 4 horas, cómo mínimo por día. El sábado y domingo mínimo trabajaría unas 5 horas en proyecto. Mándame un cronograma con las actividades en orden de prioridad.
 
 ### 7.2 Output
 
